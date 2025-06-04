@@ -1,519 +1,490 @@
-:root {
-    --primary-color: #6a11cb; /* Mor */
-    --secondary-color: #2575fc; /* Mavi */
-    --accent-color: #ffde59; /* Sarı */
-    --text-color: #333;
-    --light-text-color: #f8f9fa;
-    --bg-color: #f0f2f5;
-    --container-bg: #ffffff;
-    --success-color: #28a745;
-    --danger-color: #dc3545;
-    --info-color: #17a2b8;
-    --font-main: 'Nunito', sans-serif;
-    --font-title: 'Pacifico', cursive;
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // --- GENİŞ SUALLAR BAZASI (ƏN AZI 25 SUAL ƏLAVƏ EDİN Kİ, OYUN BAŞLASIN) ---
+    // Real tətbiqdə bura 300 sual və hər biri üçün "example_ideas" əlavə edin.
+    const allQuestionsPool = [
+        // Ev Əşyaları
+        { category: "Ev Əşyaları", question: "Qonaq otağında olan bir mebel.", example_ideas: ["divan", "kreslo", "stol", "televizor altlığı", "kitab rəfi", "pərdə", "xalça"] },
+        { category: "Ev Əşyaları", question: "Yataq otağında istifadə edilən bir şey.", example_ideas: ["yataq", "dolab", "güzgü", "gecə lampası", "yastıq", "ədyal", "komod"] },
+        { category: "Ev Əşyaları", question: "Hamam otağında olan bir ləvazimat.", example_ideas: ["sabun", "şampun", "dəsmal", "diş fırçası", "fen", "lif", "tarak"] },
+        { category: "Ev Əşyaları", question: "Təmizlik üçün istifadə edilən vasitə.", example_ideas: ["süpürgə", "tozsoran", "bez", "maye sabun", "fırça", "vedrə", "əlcək"] },
+        { category: "Ev Əşyaları", question: "Mətbəxdə yemək bişirmək üçün alət.", example_ideas: ["qazan", "tava", "bıçaq", "blender", "mikser", "süzgəc", "rende"] },
+        { category: "Ev Əşyaları", question: "İşıqlandırma üçün istifadə olunan.", example_ideas: ["lampa", "çılçıraq", "bra", "projektor", "fənər", "spot"] },
+        { category: "Ev Əşyaları", question: "Pəncərədə istifadə olunan bir şey.", example_ideas: ["pərdə", "jalüz", "şüşə", "pəncərəaltı", "tor", "dəstək"] },
+        { category: "Ev Əşyaları", question: "Divardan asılan bir dekorasiya.", example_ideas: ["şəkil", "saat", "güzgü", "xalça (kiçik)", "pano", "çərçivə"] },
+        { category: "Ev Əşyaları", question: "Yemək masasında olan bir şey.", example_ideas: ["boşqab", "stəkan", "qaşıq", "çəngəl", "salat qabı", "süfrə", "peçetka"] },
+        { category: "Ev Əşyaları", question: "Ofisdə iş masasının üzərində olan.", example_ideas: ["kompüter", "qələmdan", "monitor", "klaviatura", "kağız"] },
 
-body {
-    font-family: var(--font-main);
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column; /* Footer-in aşağıda qalması üçün */
-    justify-content: center; /* Konteyneri mərkəzə gətirmək üçün (əgər min-height 100vh ilə işləyirsə) */
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
-}
+        // Heyvanlar
+        { category: "Heyvanlar", question: "Evdə saxlanıla bilən bir heyvan.", example_ideas: ["pişik", "it", "quş", "balıq", "hamster", "dovşan", "tısbağa"] },
+        { category: "Heyvanlar", question: "Afrikada yaşayan bir vəhşi heyvan.", example_ideas: ["şir", "fil", "zürafə", "zebra", "kərgədan", "begemot", "leopard"] },
+        { category: "Heyvanlar", question: "Uça bilən bir canlı.", example_ideas: ["quş", "yarasa", "kəpənək", "arı", "ağcaqanad", "göyərçin", "qartal"] },
+        { category: "Heyvanlar", question: "Suda yaşayan bir məməli.", example_ideas: ["balina", "delfin", "suiti", "dəniz donuzu", "dəniz şiri", "kaşalot"] },
+        { category: "Heyvanlar", question: "Sürünən bir heyvan.", example_ideas: ["ilan", "timsah", "kərtənkələ", "tısbağa", "buqələmun", "varan"] },
+        { category: "Heyvanlar", question: "Meşədə yaşayan bir gəmirici.", example_ideas: ["sincab", "siçan (çöl)", "dələ", "kirpi (qismən)", "sur"] },
+        { category: "Heyvanlar", question: "Qış yuxusuna gedən bir heyvan.", example_ideas: ["ayı", "porsuq", "yarasa (bəzi növləri)", "ilan (soyuq havada)", "kirpi"] },
+        { category: "Heyvanlar", question: "Zəhərli bir həşərat.", example_ideas: ["arı (allergiyası olan üçün)", "eşşəkarısı", "əqrəb", "qaraqurd", "böve"] },
+        { category: "Heyvanlar", question: "Çöldə yaşayan bir quş.", example_ideas: ["sərçə", "qarğa", "bildirçin", "kəklik", "turac", "qaranquş"] },
+        { category: "Heyvanlar", question: "Süd verən bir kənd heyvanı.", example_ideas: ["inək", "qoyun", "keçi", "at (qismən)"] },
 
-.container {
-    background-color: var(--container-bg);
-    padding: 25px 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 100%;
-    max-width: 800px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
+        // Peşələr
+        { category: "Peşələr", question: "Sənət sahəsində bir peşə.", example_ideas: ["rəssam", "musiqiçi", "aktyor", "heykəltaraş", "dizayner", "yazıçı", "rejissor"] },
+        { category: "Peşələr", question: "Elmlə məşğul olan bir insan.", example_ideas: ["alim", "fizik", "kimyaçı", "bioloq", "astronom", "arxeoloq", "geoloq"] },
+        { category: "Peşələr", question: "Tikinti ilə bağlı bir iş.", example_ideas: ["memar", "inşaatçı", "mühəndis", "bənna", "suvaqçı", "dülgər"] },
+        { category: "Peşələr", question: "İnsanların sağlamlığı ilə məşğul olan.", example_ideas: ["həkim", "tibb bacısı", "stomatoloq", "əczaçı", "fizioterapevt", "psixoloq"] },
+        { category: "Peşələr", question: "Qanunla bağlı bir peşə.", example_ideas: ["vəkil", "hakim", "prokuror", "notarius", "hüquqşünas", "müstəntiq"] },
+        { category: "Peşələr", question: "Təhsillə bağlı bir peşə.", example_ideas: ["müəllim", "professor", "tərbiyəçi", "direktor", "dekan"] },
+        { category: "Peşələr", question: "Nəqliyyatla bağlı bir peşə.", example_ideas: ["sürücü", "pilot", "kapitan", "maşinist", "bələdçi"] },
+        { category: "Peşələr", question: "İdmanla bağlı bir peşə.", example_ideas: ["məşqçi", "idmançı", "hakim (idman)", "komentator"] },
+        { category: "Peşələr", question: "Kənd təsərrüfatı ilə bağlı iş.", example_ideas: ["fermer", "əkinçi", "bağban", "zoomühəndis", "aqronom"] },
+        { category: "Peşələr", question: "Xidmət sahəsində bir peşə.", example_ideas: ["ofisiant", "barmen", "aşpaz", "satıcı", "kassir"] },
+        // Daha çox sual əlavə edin... (MƏSƏLƏN, CƏMİ 50-100 SUAL İLƏ BAŞLAYIN)
+    ];
 
-.game-title {
-    font-family: var(--font-title);
-    font-size: 3.2em; /* Bir az kiçiltdim */
-    color: var(--primary-color);
-    margin-bottom: 25px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-}
-.title-magic {
-    color: var(--secondary-color);
-}
+    // HƏRFLƏ BAŞLAYAN SÖZLƏR ÜÇÜN GENİŞLƏNDİRİLMİŞ LÜĞƏT
+    const sampleVocabulary = {
+        A: ["alma", "armud", "avtobus", "ayı", "ana", "açıqca", "aş", "ad", "alim", "aktyor", "astronom", "araba", "arxeoloq", "asılqan", "ağac", "ağcaqanad", "ayran", "aşpaz", "aqronom", "Avropa", "Afrika", "Atlantik"],
+        B: ["banan", "balıq", "bıçaq", "bina", "bağ", "böyük", "balaca", "boşqab", "basketbol", "bioloq", "bənna", "balina", "bazar", "balkon", "bra", "blender", "bez", "bildirçin", "buqələmun", "badambura", "begemot", "barmen", "bələdçi", "bitki"],
+        C: ["canavar", "corab", "cib", "cəld", "cücə", "cümə", "cərrah", "ceyran", "cin", "cədvəl"],
+        Ç: ["çay", "çanta", "çətir", "çiyələk", "çəkic", "çiçək", "çinar", "çərşənbə", "çoban", "çörək", "çəngəl", "çərçivə", "çılçıraq", "çöl", "çəmən"],
+        D: ["dovşan", "dəftər", "dəniz", "dağ", "darvaza", "divan", "dolma", "dizayner", "delfin", "dəmir", "düşbərə", "dəsmal", "diş", "direktor", "dekan", "dülgər", "dəvəquşu"],
+        E: ["ev", "eşşək", "elm", "elektrik", "ekran", "enerji", "effekt", "elan", "era", "etiraf"],
+        Ə: ["ərik", "əlcək", "əsgər", "ədyal", "ətir", "əsas", "əczaçı", "əfsanə", "əyləncə", "əqrəb", "əkinçi", "əhali", "ərazi"],
+        F: ["fincan", "fil", "fırça", "futbol", "fərqli", "Fransa", "fizik", "fen", "fiqur", "fontan", "fermer", "fizioterapevt", "fənər", "fakt"],
+        G: ["gəmi", "günəş", "gül", "göz", "gecə", "göy", "gitara", "gilas", "geyim", "güzgü", "geoloq", "göyərçin", "gəmirici", "gəzinti"],
+        Ğ: ["ğar (mağara)", "ğəmgin (kədərli)"], // Çox azdır, praktikada istifadə edilməyə bilər
+        H: ["həkim", "heyva", "hava", "hörümçək", "hesab", "həndbol", "hokkey", "hamster", "hekayə", "hakim", "hüquqşünas", "heyvan", "hovuz"],
+        X: ["xalça", "xiyar", "xəritə", "xoruz", "xəstə", "xizək", "xəbər", "xəmir", "xəzinə", "xarakter", "xidmət", "xurma"],
+        I: ["ıspanaq", "ıslıq", "işıq", "isti", "ırmaq (çay)", "ılgım (miraj)"],
+        İ: ["ilan", "iynə", "isti", "it", "iki", "insan", "iş", "internet", "İtaliya", "inşaatçı", "idman", "inək", "iqlim", "ixtira"],
+        J: ["jurnal", "jilet", "jeton", "judo", "jaket", "jalüz", "jele"],
+        K: ["kitab", "keçi", "küçə", "kreslo", "kartof", "körpü", "kompüter", "kaktus", "kəpənək", "qəhvə (Kofe)", "kəklik", "kapitan", "kassir", "klaviatura", "komod", "konfet"],
+        Q: ["qarpız", "qələm", "qapı", "qar", "qayıq", "qaşıq", "qutu", "qırmızı", "qızıl", "qonaq", "qaymaq", "qazan", "qartal", "qaranquş", "qoyun", "qəzet", "qəsr"],
+        L: ["limon", "lampa", "lələk", "layla", "lacivərd", "limonad", "lobya", "lüğət", "leopar", "lif", "laboratoriya"],
+        M: ["maşın", "meymun", "maral", "mavi", "məktəb", "müəllim", "memar", "musiqi", "marka", "Mars", "mikser", "maye", "mühəndis", "məşqçi", "müstəntiq", "monitor"],
+        N: ["nar", "nənə", "neft", "nöqtə", "nailiyyət", "Novruz", "notarius", "nağıl", "nərgiz", "nəqliyyat", "nəfəs", "nümunə"],
+        O: ["odun", "otaq", "oyun", "orta", "obraz", "okean", "oksigen", "opera", "ofisiant", "obyekt", "od"],
+        Ö: ["ördək", "ömür", "örtük", "ölkə", "özəl", "ölçü", "öküz", "öskürək", "öyrənmək"],
+        P: ["palıd", "pişik", "paltar", "pəncərə", "pul", "polis", "Python", "plov", "piano", "paxlava", "pendir", "pilot", "prokuror", "professor", "psixoloq", "pərdə", "projektor", "peçetka"],
+        R: ["radio", "rəng", "rəsm", "robot", "ruh", "roman", "rəssam", "reqbi", "Respublika", "rejissor", "rende", "raket"],
+        S: ["saat", "soba", "su", "səhər", "sarı", "sincab", "sabun", "sakit", "Saturn", "skripka", "sıyıq", "stol", "stul", "stəkan", "sürücü", "satıcı", "süpürgə", "spot", "süzgəc"],
+        Ş: ["şar", "şir", "şəkil", "şəhər", "şokolad", "şam", "şampun", "şəkərbura", "şərf", "şahmat", "şüşə", "şezlonq", "şorba"],
+        T: ["top", "tülkü", "telefon", "təyyarə", "torpaq", "tar", "timsah", "tibb", "toster", "tarix", "tava", "tarak", "tərbiyəçi", "turac", "tısbağa", "televizor", "trapesiya"],
+        U: ["ulduz", "un", "uzaq", "uca", "uşaq", "universitet", "uğur", "usta", "uniforma"],
+        Ü: ["üzüm", "ürək", "üç", "üst", "ütgəc", "ümid", "üzgüçülük", "ünsiyyət", "ülgüc"],
+        V: ["vaqon", "velosiped", "vaza", "vətən", "varlı", "vulkan", "vəkil", "vitamin", "Venera", "voleybol", "varan", "vedrə"],
+        Y: ["yumurta", "yağış", "yarpaq", "yaşıl", "yol", "yataq", "yanğınsöndürən", "Yupiter", "yaxata", "yastıq", "yazıçı", "yarasa"],
+        Z: ["zebra", "zəng", "zeytun", "zibil", "zaman", "zürafə", "zanbaq", "zərgərlik", "Zevs", "zoomühəndis", "zirvə", "zəlzələ"]
+    };
 
-h2 {
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 20px;
-    font-size: 1.8em;
-}
+    const AZERBAIJANI_ALPHABET = Object.keys(sampleVocabulary).filter(letter => sampleVocabulary[letter] && sampleVocabulary[letter].length > 0);
+    const QUESTIONS_PER_PLAYER = 25;
+    const DEFAULT_ANSWER_TIME_LIMIT = 10;
+    const FEEDBACK_DISPLAY_TIME = 1500;
+    const LEADERBOARD_KEY = 'harfSehrbaziLeaderboardV5'; // Versiyanı artırdım ki, köhnə data ilə qarışmasın
 
-.hidden {
-    display: none !important;
-}
+    let adminSetAnswerTimeLimit = DEFAULT_ANSWER_TIME_LIMIT;
+    let currentPlayerName = '';
+    let selectedLetter = '';
+    let score = 0;
+    let currentQuestion = null;
+    let questionsAskedThisPlayerGame = 0;
+    let feedbackTimeoutId = null;
+    let answerTimerId = null;
+    let timeLeftForAnswer = 0;
 
-/* Initial Setup Area */
-#initial-setup-area {
-    margin-bottom: 30px;
-    padding: 25px;
-    background-color: #f8f9fa;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.07);
-    text-align: left;
-}
-#initial-setup-area h2 {
-    text-align: center;
-    margin-bottom: 25px;
-}
-.setup-item {
-    margin-bottom: 18px;
-}
-.setup-item label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 600;
-    color: #495057;
-    font-size: 0.95em;
-}
-#player-name-input,
-#timer-setting-input {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #ced4da;
-    border-radius: 8px;
-    font-size: 1.05em;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-#timer-setting-input {
-    max-width: 180px; /* Saniyə inputu üçün */
-}
-#player-name-input:focus,
-#timer-setting-input:focus {
-    border-color: var(--secondary-color);
-    outline: none;
-    box-shadow: 0 0 0 0.25rem rgba(37, 117, 252, 0.2);
-}
-#start-player-game-btn {
-    display: block;
-    margin: 25px auto 0 auto;
-}
+    let globallyUsedQuestions = new Set();
+    let questionsForCurrentPlayer = [];
 
+    const initialSetupArea = document.getElementById('initial-setup-area');
+    const playerNameInput = document.getElementById('player-name-input');
+    const timerSettingInput = document.getElementById('timer-setting-input');
+    const startPlayerGameBtn = document.getElementById('start-player-game-btn');
+    const currentPlayerNameDisplayLetter = document.getElementById('current-player-name-display-letter');
+    const currentPlayerNameDisplayGame = document.getElementById('current-player-name-display-game');
+    const letterSelectionArea = document.getElementById('letter-selection-area');
+    const letterButtonsContainer = document.getElementById('letter-buttons');
+    const gameArea = document.getElementById('game-area');
+    const chosenLetterDisplay = document.getElementById('chosen-letter-display');
+    const scoreDisplay = document.getElementById('score-display');
+    const questionCountDisplay = document.getElementById('question-count-display');
+    const totalQuestionsPerPlayerDisplay = document.getElementById('total-questions-per-player');
+    const timerDisplay = document.getElementById('timer-display');
+    const categoryDisplay = document.getElementById('category-display');
+    const questionText = document.getElementById('question-text');
+    const adminPanel = document.getElementById('admin-panel');
+    const reminderLetterAdmin = document.getElementById('reminder-letter-admin');
+    const toggleExamplesBtn = document.getElementById('toggle-examples-btn');
+    const exampleAnswersArea = document.getElementById('example-answers-area');
+    const exampleAnswersList = document.getElementById('example-answers-list');
+    const exampleLetterPlaceholder = document.getElementById('example-letter-placeholder');
+    const noExamplesMessage = document.getElementById('no-examples-message');
+    const adminCorrectBtn = document.getElementById('admin-correct-btn');
+    const adminIncorrectBtn = document.getElementById('admin-incorrect-btn');
+    const adminEndPlayerGameBtn = document.getElementById('admin-end-player-game-btn');
+    const feedbackMessageArea = document.getElementById('feedback-message-area');
+    const feedbackMessage = document.getElementById('feedback-message');
+    const playerGameOverArea = document.getElementById('player-game-over-area');
+    const playerNameGameOver = document.getElementById('player-name-game-over');
+    const finalPlayerScoreDisplay = document.getElementById('final-player-score');
+    const nextPlayerBtn = document.getElementById('next-player-btn');
+    const showLeaderboardBtn = document.getElementById('show-leaderboard-btn');
+    const leaderboardArea = document.getElementById('leaderboard-area');
+    const leaderboardTableBody = document.querySelector('#leaderboard-table tbody');
+    const backToPlayerNameBtn = document.getElementById('back-to-player-name-btn');
+    const clearLeaderboardBtn = document.getElementById('clear-leaderboard-btn');
+    const copyrightYearSpan = document.getElementById('copyright-year');
 
-/* Letter Selection */
-#letter-selection-area h2 {
-    font-size: 1.5em; /* Bir az kiçiltdim */
-}
-.letter-buttons-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-    gap: 12px;
-    margin-top: 15px;
-    margin-bottom: 30px;
-}
-.letter-buttons-grid button {
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    color: var(--light-text-color);
-    border: none;
-    padding: 15px 0;
-    font-size: 1.3em;
-    font-weight: 700;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-}
-.letter-buttons-grid button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-}
-.letter-buttons-grid button:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-}
-
-
-/* Game Area */
-.game-header-info {
-    display: flex;
-    flex-wrap: wrap; /* Kiçik ekranlar üçün */
-    justify-content: space-around;
-    align-items: center;
-    background-color: #e9ecef;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 20px; /* Azaldıldı */
-    font-size: 0.95em; /* Bir az kiçiltdim */
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-}
-.info-item {
-    margin: 5px 10px; /* Kiçik ekranlarda alt-alta düzüləndə boşluq */
-    white-space: nowrap; /* Adların qırılmaması üçün */
-}
-.highlight {
-    font-weight: 700;
-    color: var(--primary-color);
-    font-size: 1.05em; /* Bir az kiçiltdim */
-}
-
-#timer-area {
-    font-size: 1.1em;
-    font-weight: bold;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    padding: 10px;
-    background-color: #f8d7da; /* Taymer üçün fərqli fon */
-    border: 1px solid #f5c6cb;
-    border-radius: 5px;
-    text-align: center;
-}
-#timer-area .highlight {
-    color: var(--danger-color);
-    font-size: 1.4em; /* Taymer rəqəmi daha böyük */
-}
-
-#question-display-area {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px; /* Azaldıldı */
-    border-left: 5px solid var(--accent-color);
-    min-height: 70px; /* Sual dəyişdikdə hoppanmasın */
-}
-.category-tag {
-    font-size: 0.85em; /* Bir az kiçiltdim */
-    color: #6c757d;
-    margin-bottom: 8px;
-    text-align: left;
-}
-#category-display { color: var(--secondary-color); font-weight: bold; }
-#question-text {
-    font-size: 1.3em; /* Bir az kiçiltdim */
-    color: var(--text-color);
-    margin-top: 5px;
-    font-weight: 700;
-    line-height: 1.4;
-}
-
-.player-btn {
-    background: linear-gradient(45deg, var(--accent-color), #ffd000);
-    color: var(--text-color);
-    border: none;
-    padding: 13px 22px; /* Bir az kiçiltdim */
-    font-size: 1.05em; /* Bir az kiçiltdim */
-    font-weight: 700;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-}
-.player-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-.player-btn i { margin-right: 8px; }
-
-
-/* Admin Panel */
-#admin-panel {
-    background-color: #fff3e0; /* Açıq narıncı ton */
-    border: 1px solid #ffe0b2;
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 20px;
-    text-align: left;
-}
-#admin-panel h4 {
-    font-size: 1.2em; /* Bir az kiçiltdim */
-    color: #e65100; /* Tünd narıncı */
-    margin-top: 0;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #ffe0b2;
-    padding-bottom: 10px;
-    line-height: 1.4;
-}
-#admin-panel h4 i { margin-right: 10px; }
-#admin-panel h4 .highlight { /* Admin panelindəki hərf xatırlatması */
-    color: var(--danger-color);
-    font-weight: bold;
-}
-
-
-.admin-btn-secondary {
-    background-color: #ff9800; /* Narıncı */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 0.9em;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-bottom: 10px;
-    display: inline-block; /* Tam en olmasın */
-    width: auto;
-}
-.admin-btn-secondary:hover { background-color: #f57c00; }
-.admin-btn-secondary i { margin-right: 5px; }
-.admin-btn-secondary:disabled {
-    background-color: #bdbdbd;
-    cursor: not-allowed;
-}
-
-
-#example-answers-area {
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 6px;
-    margin-bottom: 15px; /* Azaldıldı */
-    border: 1px solid #eee;
-    max-height: 180px; /* Bir az kiçiltdim */
-    overflow-y: auto;
-}
-#example-answers-area h5 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #555;
-    font-size: 0.95em;
-    line-height: 1.4;
-}
-#example-answers-list {
-    list-style-type: none;
-    padding-left: 0;
-    margin-bottom: 0;
-}
-#example-answers-list li {
-    padding: 6px 0; /* Artırıldı */
-    border-bottom: 1px dashed #eee;
-    font-size: 0.95em;
-}
-#example-answers-list li:last-child { border-bottom: none; }
-#example-answers-area #no-examples-message {
-    padding: 10px;
-    background-color: #fff3cd;
-    color: #856404;
-    border: 1px solid #ffeeba;
-    border-radius: 5px;
-    margin-top: 10px;
-    font-size: 0.9em;
-}
-
-
-.admin-action-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 15px; /* Boşluq əlavə edildi */
-}
-.admin-btn {
-    color: white;
-    border: none;
-    padding: 11px 18px; /* Bir az kiçiltdim */
-    font-size: 0.95em; /* Bir az kiçiltdim */
-    font-weight: 700;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: opacity 0.3s ease, transform 0.2s ease;
-    flex-grow: 1;
-    min-width: 140px; /* Bir az kiçiltdim */
-}
-.admin-btn:hover:not(:disabled) { opacity: 0.85; transform: scale(1.02); }
-.admin-btn i { margin-right: 8px; }
-.admin-btn:disabled {
-    background-color: #9e9e9e !important; /* Rəngi dəyişdirdim */
-    cursor: not-allowed;
-    opacity: 0.7;
-    transform: none;
-}
-
-.admin-btn.correct { background-color: var(--success-color); }
-.admin-btn.incorrect { background-color: var(--danger-color); }
-.admin-btn.end { background-color: #757575; } /* Bir az tündləşdirdim */
-
-
-#feedback-message-area {
-    margin-top: 15px; /* Azaldıldı */
-    min-height: 28px; /* Azaldıldı */
-}
-#feedback-message {
-    font-size: 1.1em; /* Bir az kiçiltdim */
-    font-weight: bold;
-}
-.feedback-correct { color: var(--success-color); }
-.feedback-incorrect { color: var(--danger-color); }
-.feedback-info { color: var(--info-color); }
-
-
-/* Player Game Over Area */
-#player-game-over-area { padding: 25px; } /* Azaldıldı */
-.game-over-title {
-    font-family: var(--font-title);
-    font-size: 2.8em; /* Bir az kiçiltdim */
-    color: var(--primary-color);
-    margin-bottom: 15px;
-}
-#player-game-over-area p {
-    font-size: 1.25em; /* Bir az kiçiltdim */
-    margin-bottom: 20px;
-}
-.highlight-final {
-    font-weight: 900;
-    font-size: 1.7em; /* Bir az kiçiltdim */
-    color: var(--success-color);
-    display: block;
-    margin-top: 10px;
-}
-.party-popper-gif {
-    width: 130px; /* Bir az kiçiltdim */
-    height: auto;
-    margin: 15px 0;
-}
-.next-actions {
-    margin-top: 20px; /* Azaldıldı */
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-.next-actions .player-btn {
-    min-width: 180px; /* Bir az kiçiltdim */
-}
-.player-btn.secondary {
-    background: linear-gradient(45deg, #6c757d, #495057);
-}
-.player-btn.secondary:hover {
-    background: linear-gradient(45deg, #5a6268, #343a40);
-}
-
-
-/* Leaderboard Area */
-#leaderboard-area {
-    padding: 20px;
-    margin-top: 20px;
-}
-#leaderboard-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    font-size: 0.95em; /* Cədvəl mətnini bir az kiçiltdim */
-}
-#leaderboard-table th, #leaderboard-table td {
-    border: 1px solid #ddd;
-    padding: 10px 12px; /* Bir az azaldıldı */
-    text-align: left;
-}
-#leaderboard-table th {
-    background-color: var(--primary-color);
-    color: var(--light-text-color);
-    font-weight: 700;
-}
-#leaderboard-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-#leaderboard-table tbody tr:hover {
-    background-color: #f1f1f1;
-}
-#leaderboard-table td:first-child, #leaderboard-table th:first-child { /* Yer sütunu */
-    text-align: center;
-    width: 50px; /* Bir az daraltdım */
-}
-#leaderboard-table td:last-child, #leaderboard-table th:last-child { /* Xal sütunu */
-    text-align: center;
-    width: 80px; /* Bir az daraltdım */
-}
-
-/* Footer Styling */
-footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: auto; /* Konteynerdən sonra footer-in aşağıda qalmasını təmin edir */
-    background-color: #2c3e50; /* Daha tünd bir rəng */
-    color: #ecf0f1; /* Açıq rəng */
-    font-size: 0.85em; /* Bir az kiçiltdim */
-    width: 100%; /* Tam en */
-    box-sizing: border-box;
-    border-top: 4px solid var(--accent-color); /* Vurğu xətti */
-}
-footer p {
-    margin: 6px 0;
-}
-
-
-/* Media Queries for responsiveness */
-@media (max-width: 768px) {
-    .container {
-        padding: 20px 25px;
+    function initGameSetup() {
+        totalQuestionsPerPlayerDisplay.textContent = QUESTIONS_PER_PLAYER;
+        createLetterButtons();
+        if (copyrightYearSpan) {
+            copyrightYearSpan.textContent = new Date().getFullYear();
+        }
+        showScreen('initial-setup');
     }
-    .game-title {
-        font-size: 2.8em;
-    }
-    .game-header-info {
-        font-size: 0.9em;
-    }
-    .info-item {
-        margin: 3px 8px;
-    }
-    #question-text {
-        font-size: 1.2em;
-    }
-    .admin-btn {
-        min-width: 130px;
-        padding: 10px 15px;
-    }
-    .game-over-title {
-        font-size: 2.5em;
-    }
-}
 
-@media (max-width: 600px) {
-    body { padding: 10px; }
-    .container { padding: 15px; }
-    .game-title { font-size: 2.2em; }
-    h2 { font-size: 1.5em; }
-    .letter-buttons-grid {
-        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
-        gap: 8px;
+    function showScreen(screenName) {
+        initialSetupArea.classList.add('hidden');
+        letterSelectionArea.classList.add('hidden');
+        gameArea.classList.add('hidden');
+        playerGameOverArea.classList.add('hidden');
+        leaderboardArea.classList.add('hidden');
+
+        const screenElement = document.getElementById(screenName + '-area');
+        if (screenElement) {
+            screenElement.classList.remove('hidden');
+        }
+
+        if (screenName === 'leaderboard') {
+            displayLeaderboard();
+        }
     }
-    .letter-buttons-grid button {
-        font-size: 1.1em;
-        padding: 10px 0;
+
+    startPlayerGameBtn.addEventListener('click', () => {
+        const name = playerNameInput.value.trim();
+        const timerValue = parseInt(timerSettingInput.value, 10);
+
+        if (!name) {
+            alert("Zəhmət olmasa, oyunçu adını daxil edin.");
+            return;
+        }
+        if (isNaN(timerValue) || timerValue < 3) {
+            alert("Zəhmət olmasa, hər sual üçün düzgün vaxt daxil edin (minimum 3 saniyə).");
+            return;
+        }
+
+        // Sual hovuzunun yoxlanılması
+        if (allQuestionsPool.length < QUESTIONS_PER_PLAYER) {
+            alert(`Oyun başlaya bilməz! Sual hovuzunda minimum ${QUESTIONS_PER_PLAYER} sual olmalıdır. Hazırda ${allQuestionsPool.length} sual var. Zəhmət olmasa, script.js faylına daha çox sual əlavə edin.`);
+            return;
+        }
+
+        currentPlayerName = name;
+        adminSetAnswerTimeLimit = timerValue;
+        currentPlayerNameDisplayLetter.textContent = currentPlayerName;
+        currentPlayerNameDisplayGame.textContent = currentPlayerName;
+        
+        const questionsPrepared = prepareQuestionsForCurrentPlayer();
+        if (questionsPrepared) {
+            showScreen('letter-selection');
+        }
+        // prepareQuestionsForCurrentPlayer içində xəta olsa, özü alert verib geri qayıdacaq
+    });
+
+    function prepareQuestionsForCurrentPlayer() {
+        questionsForCurrentPlayer = [];
+
+        // Ümumi sual hovuzunda kifayət qədər sual olub olmadığını yoxlayaq
+        if (allQuestionsPool.length < QUESTIONS_PER_PLAYER) {
+            // Bu yoxlama artıq startPlayerGameBtn içində edilir, amma burada da saxlamaq zərər verməz.
+            console.error("Kritik xəta: `allQuestionsPool`da kifayət qədər sual yoxdur.");
+            return false;
+        }
+
+        let availableForSelection = shuffleArray([...allQuestionsPool]);
+        let selectedCount = 0;
+        let attempts = 0; // Sonsuz dövrün qarşısını almaq üçün
+        const maxAttempts = allQuestionsPool.length * 2; // Təxmini bir limit
+
+        while (selectedCount < QUESTIONS_PER_PLAYER && attempts < maxAttempts) {
+            if (availableForSelection.length === 0) {
+                // Əgər qlobal olaraq istifadə edilməmiş sual qalmayıbsa,
+                // o zaman qlobal istifadə edilmişlər arasından seçməyə başlayaq
+                // (amma bu oyunçu üçün təkrarlanmasın)
+                console.warn("Qlobal unikal suallar bitdi, təkrarlanan suallar seçilə bilər (fərqli oyunçular üçün).");
+                availableForSelection = shuffleArray([...allQuestionsPool]); // Bütün hovuzu yenidən götür
+                if (availableForSelection.length === 0) break; // Əgər hovuz boşdursa, çıx
+            }
+
+            let questionCandidate = availableForSelection.pop();
+
+            // Bu oyunçu üçün bu sualın təkrarlanmadığını yoxla
+            if (!questionsForCurrentPlayer.some(q => q.question === questionCandidate.question)) {
+                questionsForCurrentPlayer.push(questionCandidate);
+                globallyUsedQuestions.add(questionCandidate.question); // Qlobal istifadəyə əlavə et (hətta təkrarlansa da)
+                selectedCount++;
+            }
+            attempts++;
+        }
+
+        if (questionsForCurrentPlayer.length < QUESTIONS_PER_PLAYER) {
+            alert(`Oyunçu üçün ${QUESTIONS_PER_PLAYER} unikal sual seçilə bilmədi. Mövcud sual sayı: ${questionsForCurrentPlayer.length}. Sual hovuzunu yoxlayın və ya daha çox sual əlavə edin.`);
+            showScreen('initial-setup');
+            return false;
+        }
+        questionsForCurrentPlayer = shuffleArray(questionsForCurrentPlayer); // Seçilmiş sualları da qarışdır
+        return true;
     }
-    .game-header-info {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px;
+
+
+    function createLetterButtons() {
+        letterButtonsContainer.innerHTML = '';
+        // Lüğətdə sözü olan hərfləri götürürük
+        const availableLetters = Object.keys(sampleVocabulary).filter(letter => sampleVocabulary[letter] && sampleVocabulary[letter].length > 0 && !(sampleVocabulary[letter].length === 1 && sampleVocabulary[letter][0].includes("çətin")));
+        
+        availableLetters.forEach(letter => {
+            const button = document.createElement('button');
+            button.textContent = letter;
+            button.addEventListener('click', () => selectLetterForPlayer(letter));
+            letterButtonsContainer.appendChild(button);
+        });
+         if (availableLetters.length === 0) {
+            letterButtonsContainer.innerHTML = "<p style='color: var(--danger-color);'>Lüğətdə heç bir hərf üçün söz tapılmadı. Oyunu davam etmək mümkün deyil.</p>";
+        }
     }
-    .info-item { width: 100%; text-align: left; margin: 4px 0; }
-    #question-text { font-size: 1.1em; }
-    .admin-action-buttons {
-        flex-direction: column;
+
+    function selectLetterForPlayer(letter) {
+        selectedLetter = letter.toUpperCase();
+        chosenLetterDisplay.textContent = selectedLetter;
+        exampleLetterPlaceholder.textContent = selectedLetter;
+        reminderLetterAdmin.textContent = selectedLetter;
+        startPlayerGameSession();
     }
-    .admin-btn {
-        width: 100%;
+
+    function startPlayerGameSession() {
+        score = 0;
+        questionsAskedThisPlayerGame = 0; // Hər yeni sessiyada sıfırla
+        
+        scoreDisplay.textContent = score;
+        feedbackMessage.textContent = '';
+        feedbackMessage.className = '';
+        clearTimeout(feedbackTimeoutId);
+        clearTimeout(answerTimerId);
+        
+        enableAdminDecisionButtons();
+        showScreen('game');
+        displayNextQuestionForPlayer();
     }
-    .next-actions .player-btn {
-        width: 100%;
-        min-width: unset;
+
+    function displayNextQuestionForPlayer() {
+        clearTimeout(feedbackTimeoutId);
+        clearTimeout(answerTimerId);
+
+        // questionsForCurrentPlayer-in boş olub olmadığını və ya indeksin həddi aşmadığını yoxla
+        if (questionsAskedThisPlayerGame >= QUESTIONS_PER_PLAYER || questionsAskedThisPlayerGame >= questionsForCurrentPlayer.length) {
+            endPlayerGame();
+            return;
+        }
+
+        currentQuestion = questionsForCurrentPlayer[questionsAskedThisPlayerGame];
+        // questionsAskedThisPlayerGame artıq adminGivesFeedback-də və ya handleTimeout-da artırılacaq
+        // Burada yalnız göstərmək üçün istifadə edirik
+        questionCountDisplay.textContent = questionsAskedThisPlayerGame + 1; // Növbəti sual nömrəsi
+
+        categoryDisplay.textContent = currentQuestion.category;
+        questionText.textContent = currentQuestion.question;
+
+        feedbackMessage.textContent = `${currentPlayerName} cavabını düşünür...`;
+        feedbackMessage.className = 'feedback-info';
+        exampleAnswersArea.classList.add('hidden');
+        noExamplesMessage.classList.add('hidden');
+        generateAndDisplayExampleAnswers();
+        enableAdminDecisionButtons();
+        startAnswerTimer();
     }
-     #leaderboard-table {
-        font-size: 0.85em;
+
+    function startAnswerTimer() {
+        timeLeftForAnswer = adminSetAnswerTimeLimit;
+        timerDisplay.textContent = timeLeftForAnswer;
+        answerTimerId = setInterval(() => {
+            timeLeftForAnswer--;
+            timerDisplay.textContent = timeLeftForAnswer;
+            if (timeLeftForAnswer <= 0) {
+                clearInterval(answerTimerId);
+                handleTimeout();
+            }
+        }, 1000);
     }
-    #leaderboard-table th, #leaderboard-table td {
-        padding: 6px 8px;
+
+    function handleTimeout() {
+        showFeedback("Vaxt bitdi! Cavab səhv qəbul edildi.", "incorrect");
+        disableAdminDecisionButtons();
+        adminGivesFeedback(false, true); // Timeout səbəbi ilə səhv cavab
     }
-    footer {
-        font-size: 0.8em;
+
+    function generateAndDisplayExampleAnswers() {
+        exampleAnswersList.innerHTML = '';
+        const letterSpecificExamples = [];
+        const wordsStartingWithLetter = sampleVocabulary[selectedLetter] || [];
+
+        if (wordsStartingWithLetter.length > 0) {
+            const shuffledWords = shuffleArray([...wordsStartingWithLetter]);
+            for (let i = 0; i < Math.min(5, shuffledWords.length); i++) {
+                if (shuffledWords[i] && !shuffledWords[i].includes("çətin")) { // "Ğ" kimi problemli nümunələri burax
+                    letterSpecificExamples.push(capitalizeFirstLetter(shuffledWords[i]));
+                }
+            }
+        }
+
+        if (letterSpecificExamples.length > 0) {
+            letterSpecificExamples.forEach(ex => {
+                const li = document.createElement('li');
+                li.textContent = ex;
+                exampleAnswersList.appendChild(li);
+            });
+            toggleExamplesBtn.disabled = false;
+            noExamplesMessage.classList.add('hidden');
+        } else {
+            noExamplesMessage.classList.remove('hidden');
+            toggleExamplesBtn.disabled = true;
+            exampleAnswersArea.classList.add('hidden');
+        }
     }
-}
+    
+    function capitalizeFirstLetter(string) {
+        if (!string) return '';
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    function adminGivesFeedback(isCorrect, fromTimeout = false) {
+        if (!fromTimeout) {
+            clearTimeout(answerTimerId);
+        }
+
+        if (isCorrect) {
+            score++;
+            scoreDisplay.textContent = score;
+            if (!fromTimeout) showFeedback("Əla! Düzgün cavab!", "correct");
+        } else {
+            if (!fromTimeout) showFeedback("Təəssüf... Bu dəfə alınmadı.", "incorrect");
+        }
+        disableAdminDecisionButtons();
+        questionsAskedThisPlayerGame++; // Sual sayını burada artırırıq
+
+        feedbackTimeoutId = setTimeout(() => {
+            // Növbəti suala keçməzdən əvvəl yenidən yoxlayaq
+            if (questionsAskedThisPlayerGame < QUESTIONS_PER_PLAYER && questionsAskedThisPlayerGame < questionsForCurrentPlayer.length) {
+                displayNextQuestionForPlayer();
+            } else {
+                endPlayerGame();
+            }
+        }, fromTimeout ? 500 : FEEDBACK_DISPLAY_TIME);
+    }
+
+    function endPlayerGame(forceEnd = false) {
+        clearTimeout(feedbackTimeoutId);
+        clearTimeout(answerTimerId);
+        savePlayerResult(currentPlayerName, score);
+        
+        playerNameGameOver.textContent = currentPlayerName;
+        finalPlayerScoreDisplay.textContent = score;
+        showScreen('player-game-over');
+        if (forceEnd) {
+            showFeedback(`${currentPlayerName} üçün oyun admin tərəfindən bitirildi. Yekun xal: ${score}`, "info", true);
+        }
+    }
+
+    function savePlayerResult(name, playerScore) {
+        let leaderboard = JSON.parse(localStorage.getItem(LEADERBOARD_KEY)) || [];
+        const existingPlayerIndex = leaderboard.findIndex(p => p.name.toLowerCase() === name.toLowerCase());
+        if (existingPlayerIndex > -1) {
+            if (playerScore > leaderboard[existingPlayerIndex].score) {
+                 leaderboard[existingPlayerIndex].score = playerScore;
+            }
+        } else {
+            leaderboard.push({ name: name, score: playerScore });
+        }
+        leaderboard.sort((a, b) => b.score - a.score);
+        localStorage.setItem(LEADERBOARD_KEY, JSON.stringify(leaderboard));
+    }
+
+    function displayLeaderboard() {
+        leaderboardTableBody.innerHTML = '';
+        let leaderboard = JSON.parse(localStorage.getItem(LEADERBOARD_KEY)) || [];
+        if (leaderboard.length === 0) {
+            const row = leaderboardTableBody.insertRow();
+            const cell = row.insertCell();
+            cell.colSpan = 3;
+            cell.textContent = "Hələ heç bir nəticə yoxdur.";
+            cell.style.textAlign = "center";
+            return;
+        }
+        leaderboard.forEach((player, index) => {
+            const row = leaderboardTableBody.insertRow();
+            row.insertCell().textContent = index + 1;
+            row.insertCell().textContent = player.name;
+            row.insertCell().textContent = player.score;
+        });
+    }
+    
+    function clearLeaderboard() {
+         if (confirm("Liderlər cədvəlini təmizləməyə əminsinizmi?")) {
+            localStorage.removeItem(LEADERBOARD_KEY);
+            displayLeaderboard();
+            showFeedback("Liderlər cədvəli təmizləndi.", "info", true);
+        }
+    }
+
+    function showFeedback(message, type, persist = false) {
+        feedbackMessage.textContent = message;
+        feedbackMessage.className = `feedback-${type}`;
+        if (!persist && type !== 'info') { // İnfo mesajları qalsın, digərləri silinsin (əgər lazım olarsa)
+            // setTimeout(() => { if (feedbackMessage.className.includes(type)) feedbackMessage.textContent = ''; }, FEEDBACK_DISPLAY_TIME + 500);
+        }
+    }
+
+    function enableAdminDecisionButtons() {
+        adminCorrectBtn.disabled = false;
+        adminIncorrectBtn.disabled = false;
+        adminEndPlayerGameBtn.disabled = false;
+    }
+
+    function disableAdminDecisionButtons() {
+        adminCorrectBtn.disabled = true;
+        adminIncorrectBtn.disabled = true;
+        // adminEndPlayerGameBtn aktiv qalsın
+    }
+
+    function shuffleArray(array) {
+        let currentIndex = array.length, randomIndex;
+        while (currentIndex != 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
+        }
+        return array;
+    }
+
+    adminCorrectBtn.addEventListener('click', () => adminGivesFeedback(true));
+    adminIncorrectBtn.addEventListener('click', () => adminGivesFeedback(false));
+    adminEndPlayerGameBtn.addEventListener('click', () => endPlayerGame(true));
+    toggleExamplesBtn.addEventListener('click', () => {
+        exampleAnswersArea.classList.toggle('hidden');
+        toggleExamplesBtn.innerHTML = exampleAnswersArea.classList.contains('hidden') ?
+            '<i class="fas fa-lightbulb"></i> Nümunə Cavabları Göstər' :
+            '<i class="fas fa-eye-slash"></i> Nümunə Cavabları Gizlət';
+    });
+    nextPlayerBtn.addEventListener('click', () => {
+        showScreen('initial-setup');
+    });
+    showLeaderboardBtn.addEventListener('click', () => {
+        showScreen('leaderboard');
+    });
+    backToPlayerNameBtn.addEventListener('click', () => {
+        showScreen('initial-setup');
+    });
+    clearLeaderboardBtn.addEventListener('click', clearLeaderboard);
+
+    initGameSetup();
+});
