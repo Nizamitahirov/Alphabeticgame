@@ -14,9 +14,16 @@
             <h1 class="game-title">Hərf <span class="title-magic">Sehrbazı</span></h1>
         </header>
 
-        <div id="player-name-area">
-            <h2>Oyunçu Adını Daxil Edin:</h2>
-            <input type="text" id="player-name-input" placeholder="Məsələn, Ayan">
+        <div id="initial-setup-area"> <!-- YENİ: İlkin Ayarlar Bölməsi -->
+            <h2>Oyun Ayarları</h2>
+            <div class="setup-item">
+                <label for="player-name-input">Oyunçu Adını Daxil Edin:</label>
+                <input type="text" id="player-name-input" placeholder="Məsələn, Ayan">
+            </div>
+            <div class="setup-item">
+                <label for="timer-setting-input">Hər Sual Üçün Vaxt (san):</label>
+                <input type="number" id="timer-setting-input" value="10" min="3"> <!-- Default 10 san, min 3 san -->
+            </div>
             <button id="start-player-game-btn" class="player-btn"><i class="fas fa-play"></i> Oyuna Başla</button>
         </div>
 
@@ -35,8 +42,8 @@
                 <div class="info-item">Sual: <span id="question-count-display" class="highlight">0</span> / <span id="total-questions-per-player">25</span></div>
             </div>
 
-            <div id="timer-area"> <!-- YENİ: Taymer üçün sahə -->
-                Qalan Vaxt: <span id="timer-display" class="highlight">5</span> san
+            <div id="timer-area">
+                Qalan Vaxt: <span id="timer-display" class="highlight"></span> san
             </div>
 
             <div id="question-display-area">
@@ -91,6 +98,11 @@
             <button id="clear-leaderboard-btn" class="admin-btn incorrect" style="margin-top: 15px;"><i class="fas fa-trash-alt"></i> Cədvəli Təmizlə</button>
         </div>
     </div>
+
+    <footer> <!-- YENİ: Footer -->
+        <p>Developed by Nizami Tahir</p>
+        <p>© <span id="copyright-year"></span> Databyte Technology. Bütün hüquqlar qorunur.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
