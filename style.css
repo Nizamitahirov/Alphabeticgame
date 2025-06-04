@@ -1,0 +1,490 @@
+:root {
+    --primary-color: #6a11cb; /* Mor */
+    --secondary-color: #2575fc; /* Mavi */
+    --accent-color: #ffde59; /* Sarı */
+    --text-color: #333;
+    --light-text-color: #f8f9fa;
+    --bg-color: #f0f2f5;
+    --container-bg: #ffffff;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --info-color: #17a2b8;
+    --font-main: 'Nunito', sans-serif;
+    --font-title: 'Pacifico', cursive;
+}
+
+body {
+    font-family: var(--font-main);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Dəyişdirildi */
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Sürüşdürmə üçün */
+}
+
+.container {
+    background-color: var(--container-bg);
+    padding: 25px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px; /* Başlıq üçün yer */
+    margin-bottom: 20px;
+}
+
+.game-title {
+    font-family: var(--font-title);
+    font-size: 3.5em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+.title-magic {
+    color: var(--secondary-color);
+}
+
+h2 {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Letter Selection */
+.letter-buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.letter-buttons-grid button {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: var(--light-text-color);
+    border: none;
+    padding: 15px 0;
+    font-size: 1.3em;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.letter-buttons-grid button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+/* Game Area */
+.game-header-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #e9ecef;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-size: 1em;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+.info-item { margin: 0 10px; }
+.highlight {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+
+#question-display-area {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border-left: 5px solid var(--accent-color);
+}
+.category-tag {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-bottom: 8px;
+    text-align: left;
+}
+#category-display { color: var(--secondary-color); }
+#question-text {
+    font-size: 1.4em;
+    color: var(--text-color);
+    margin-top: 5px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+#player-interaction-area {
+    margin-bottom: 30px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+#player-answer-input {
+    flex-grow: 1;
+    padding: 14px;
+    border: 2px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1.1em;
+    transition: border-color 0.3s ease;
+}
+#player-answer-input:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(37, 117, 252, 0.25);
+}
+
+.player-btn {
+    background: linear-gradient(45deg, var(--accent-color), #ffd000);
+    color: var(--text-color);
+    border: none;
+    padding: 14px 25px;
+    font-size: 1.1em;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+.player-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.player-btn i { margin-right: 8px; }
+
+
+/* Admin Panel */
+#admin-panel {
+    background-color: #fdf0e6; /* Slightly different background for admin */
+    border: 1px solid #f3d1b3;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: left;
+}
+#admin-panel h4 {
+    font-size: 1.3em;
+    color: #c06000;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #f3d1b3;
+    padding-bottom: 10px;
+}
+#admin-panel h4 i { margin-right: 10px; }
+
+#player-submitted-answer-display-area {
+    background-color: #fff9f2;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    border: 1px dashed #f3d1b3;
+}
+#player-submitted-answer-text {
+    font-style: italic;
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-top: 5px;
+    word-break: break-word;
+}
+
+.admin-btn-secondary {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+    display: block; /* Make it full width or adjust as needed */
+    width: auto;
+}
+.admin-btn-secondary:hover { background-color: #e68900; }
+.admin-btn-secondary i { margin-right: 5px; }
+
+
+#example-answers-area {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    max-height: 200px; /* Nümunələr çox olarsa */
+    overflow-y: auto;
+}
+#example-answers-area h5 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #555;
+}
+#example-answers-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+#example-answers-list li {
+    padding: 5px 0;
+    border-bottom: 1px dashed #eee;
+    font-size: 0.95em;
+}
+#example-answers-list li:last-child { border-bottom: none; }
+
+.admin-action-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Mobil üçün */
+    gap: 10px;
+    justify-content: center; /* Düymələri mərkəzə gətirir */
+}
+.admin-btn {
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1em;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    flex-grow: 1; /* Mümkün qədər yer tutsun */
+    min-width: 150px; /* Minimum en */
+}
+.admin-btn:hover { opacity: 0.85; transform: scale(1.02); }
+.admin-btn i { margin-right: 8px; }
+
+.admin-btn.correct { background-color: var(--success-color); }
+.admin-btn.incorrect { background-color: var(--danger-color); }
+.admin-btn.next { background-color: var(--info-color); }
+.admin-btn.end { background-color: #6c757d; } /* Boz */
+
+
+#feedback-message-area {
+    margin-top: 20px;
+    min-height: 30px; /* Yerin dəyişməməsi üçün */
+}
+#feedback-message {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.feedback-correct { color: var(--success-color); }
+.feedback-incorrect { color: var(--danger-color); }
+.feedback-info { color: var(--info-color); }
+
+
+/* Game Over Area */
+#game-over-area { padding: 30px; }
+.game-over-title {
+    font-family: var(--font-title);
+    font-size: 3em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+#game-over-area p {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+}
+.highlight-final {
+    font-weight: 900;
+    font-size: 1.8em;
+    color: var(--success-color);
+    display: block;
+    margin-top: 10px;
+}
+.party-popper-gif {
+    width: 150px;
+    height: auto;
+    margin: 15px 0;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    .game-title {
+        font-size: 2.5em;
+    }
+    .letter-buttons-grid {
+        grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+        gap: 8px;
+    }
+    .letter-buttons-grid button {
+        font-size: 1.1em;
+        padding: 12px 0;
+    }
+    .admin-action-buttons {
+        flex-direction: column; /* Düymələr alt-alta düzülsün */
+    }
+    .admin-btn {
+        width: 100%; /* Tam en tutsun */
+    }
+    #player-interaction-area {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #player-answer-input, .player-btn {
+        width: 100%;
+        box-sizing: border-box; /* Padding daxil olmaqla en */
+    }
+}
+
+/* ... (əvvəlki CSS kodu olduğu kimi qalır) ... */
+
+/* Player Name Area */
+#player-name-area {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+#player-name-area h2 {
+    margin-bottom: 15px;
+}
+#player-name-input {
+    width: calc(100% - 30px); /* Padding çıxılır */
+    max-width: 300px;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 2px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1.1em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#player-name-input:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(37, 117, 252, 0.25);
+}
+
+/* Game Area Header Info Sual Sayı */
+#total-questions-per-player {
+    color: #6c757d;
+    font-weight: normal;
+}
+
+
+/* Player Game Over Area */
+#player-game-over-area {
+    padding: 30px;
+}
+.next-actions {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.next-actions .player-btn {
+    min-width: 200px;
+}
+.player-btn.secondary {
+    background: linear-gradient(45deg, #6c757d, #495057); /* Boz gradient */
+}
+.player-btn.secondary:hover {
+    background: linear-gradient(45deg, #5a6268, #343a40);
+}
+
+
+/* Leaderboard Area */
+#leaderboard-area {
+    padding: 20px;
+    margin-top: 20px;
+}
+#leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+#leaderboard-table th, #leaderboard-table td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+}
+#leaderboard-table th {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    font-weight: 700;
+}
+#leaderboard-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+#leaderboard-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+#leaderboard-table td:first-child, #leaderboard-table th:first-child {
+    text-align: center;
+    width: 60px;
+}
+#leaderboard-table td:last-child, #leaderboard-table th:last-child {
+    text-align: center;
+    width: 100px;
+}
+
+/* ... (qalan CSS kodu olduğu kimi qalır) ... */
+
+@media (max-width: 600px) {
+    /* ... (əvvəlki media query-lər) ... */
+    .next-actions .player-btn {
+        width: 100%;
+        min-width: unset;
+    }
+     #leaderboard-table {
+        font-size: 0.9em;
+    }
+    #leaderboard-table th, #leaderboard-table td {
+        padding: 8px 10px;
+    }
+}
+
+/* ... (əvvəlki CSS kodu olduğu kimi qalır) ... */
+
+#admin-panel h4 .highlight { /* Admin panelindəki hərf xatırlatması üçün */
+    color: var(--danger-color); /* Diqqət çəksin */
+    font-weight: bold;
+}
+
+#example-answers-area #no-examples-message {
+    padding: 10px;
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* ... (qalan CSS kodu olduğu kimi qalır) ... */
+
+/* ... (əvvəlki CSS kodu olduğu kimi qalır) ... */
+
+#timer-area {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    text-align: center;
+}
+#timer-area .highlight {
+    color: var(--danger-color); /* Taymer qırmızı olsun */
+    font-size: 1.3em;
+}
+
+/* ... (qalan CSS kodu olduğu kimi qalır) ... */
