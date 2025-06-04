@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hərf Sehrbazı</title>
+    <!-- CSS FAYLININ DÜZGÜN QOŞULDUĞUNDAN ƏMİN OLUN -->
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -14,15 +15,15 @@
             <h1 class="game-title">Hərf <span class="title-magic">Sehrbazı</span></h1>
         </header>
 
-        <div id="initial-setup-area"> <!-- YENİ: İlkin Ayarlar Bölməsi -->
+        <div id="initial-setup-area">
             <h2>Oyun Ayarları</h2>
             <div class="setup-item">
                 <label for="player-name-input">Oyunçu Adını Daxil Edin:</label>
-                <input type="text" id="player-name-input" placeholder="Məsələn, Ayan">
+                <input type="text" id="player-name-input" placeholder="Məsələn, Leyla">
             </div>
             <div class="setup-item">
                 <label for="timer-setting-input">Hər Sual Üçün Vaxt (san):</label>
-                <input type="number" id="timer-setting-input" value="10" min="3"> <!-- Default 10 san, min 3 san -->
+                <input type="number" id="timer-setting-input" value="10" min="3" max="60">
             </div>
             <button id="start-player-game-btn" class="player-btn"><i class="fas fa-play"></i> Oyuna Başla</button>
         </div>
@@ -43,12 +44,12 @@
             </div>
 
             <div id="timer-area">
-                Qalan Vaxt: <span id="timer-display" class="highlight"></span> san
+                Qalan Vaxt: <span id="timer-display" class="highlight">10</span> san
             </div>
 
             <div id="question-display-area">
                 <p class="category-tag">Kateqoriya: <strong id="category-display"></strong></p>
-                <h3 id="question-text"></h3>
+                <h3 id="question-text">Sual mətni burada göstəriləcək...</h3>
             </div>
 
             <div id="admin-panel">
@@ -57,7 +58,7 @@
                 <div id="example-answers-area" class="hidden">
                     <h5>"<span class="highlight" id="example-letter-placeholder"></span>" hərfi ilə başlayan nümunələr:</h5>
                     <ul id="example-answers-list"></ul>
-                    <p id="no-examples-message" class="hidden" style="font-style: italic; color: #777;">Bu hərf üçün uyğun nümunə tapılmadı.</p>
+                    <p id="no-examples-message" class="hidden">Bu hərf üçün uyğun nümunə tapılmadı.</p>
                 </div>
 
                 <div class="admin-action-buttons">
@@ -92,6 +93,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Cədvəl məzmunu JavaScript ilə doldurulacaq -->
                 </tbody>
             </table>
             <button id="back-to-player-name-btn" class="player-btn"><i class="fas fa-arrow-left"></i> Yeni Oyuna Başla</button>
@@ -99,11 +101,12 @@
         </div>
     </div>
 
-    <footer> <!-- YENİ: Footer -->
+    <footer>
         <p>Developed by Nizami Tahir</p>
-        <p>© <span id="copyright-year"></span> Databyte Technology. Bütün hüquqlar qorunur.</p>
+        <p>© <span id="copyright-year">2024</span> Databyte Technology. Bütün hüquqlar qorunur.</p>
     </footer>
 
+    <!-- JAVASCRIPT FAYLININ DÜZGÜN QOŞULDUĞUNDAN ƏMİN OLUN (body-nin sonunda) -->
     <script src="script.js"></script>
 </body>
 </html>
