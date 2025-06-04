@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hərf Sehrbazı</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="game-title">Hərf <span class="title-magic">Sehrbazı</span></h1>
+        </header>
+
+        <div id="player-name-area">
+            <h2>Oyunçu Adını Daxil Edin:</h2>
+            <input type="text" id="player-name-input" placeholder="Məsələn, Ayan">
+            <button id="start-player-game-btn" class="player-btn"><i class="fas fa-play"></i> Oyuna Başla</button>
+        </div>
+
+        <div id="letter-selection-area" class="hidden">
+            <h2><span id="current-player-name-display-letter"></span>, Oyun üçün Bir Hərf Seçin:</h2>
+            <div id="letter-buttons" class="letter-buttons-grid">
+                <!-- Hərf düymələri JavaScript ilə əlavə olunacaq -->
+            </div>
+        </div>
+
+        <div id="game-area" class="hidden">
+            <div class="game-header-info">
+                <div class="info-item">Oyunçu: <strong id="current-player-name-display-game" class="highlight"></strong></div>
+                <div class="info-item">Hərf: <span id="chosen-letter-display" class="highlight"></span></div>
+                <div class="info-item">Xal: <span id="score-display" class="highlight">0</span></div>
+                <div class="info-item">Sual: <span id="question-count-display" class="highlight">0</span> / <span id="total-questions-per-player">25</span></div>
+            </div>
+
+            <div id="timer-area"> <!-- YENİ: Taymer üçün sahə -->
+                Qalan Vaxt: <span id="timer-display" class="highlight">5</span> san
+            </div>
+
+            <div id="question-display-area">
+                <p class="category-tag">Kateqoriya: <strong id="category-display"></strong></p>
+                <h3 id="question-text"></h3>
+            </div>
+
+            <div id="admin-panel">
+                <h4><i class="fas fa-user-shield"></i> Admin Paneli (Cavab "<span class="highlight" id="reminder-letter-admin"></span>" hərfi ilə başlamalıdır)</h4>
+                <button id="toggle-examples-btn" class="admin-btn-secondary"><i class="fas fa-lightbulb"></i> Nümunə Cavabları Göstər/Gizlət</button>
+                <div id="example-answers-area" class="hidden">
+                    <h5>"<span class="highlight" id="example-letter-placeholder"></span>" hərfi ilə başlayan nümunələr:</h5>
+                    <ul id="example-answers-list"></ul>
+                    <p id="no-examples-message" class="hidden" style="font-style: italic; color: #777;">Bu hərf üçün uyğun nümunə tapılmadı.</p>
+                </div>
+
+                <div class="admin-action-buttons">
+                    <button id="admin-correct-btn" class="admin-btn correct"><i class="fas fa-check-circle"></i> Düzgündür</button>
+                    <button id="admin-incorrect-btn" class="admin-btn incorrect"><i class="fas fa-times-circle"></i> Səhvdir</button>
+                    <button id="admin-end-player-game-btn" class="admin-btn end"><i class="fas fa-stop-circle"></i> Bu Oyunçunun Oyununu Bitir</button>
+                </div>
+            </div>
+            <div id="feedback-message-area">
+                <p id="feedback-message"></p>
+            </div>
+        </div>
+
+        <div id="player-game-over-area" class="hidden">
+            <h2 class="game-over-title"><span id="player-name-game-over"></span> üçün Oyun Bitdi!</h2>
+            <p>Yekun Xalınız: <span id="final-player-score" class="highlight-final"></span></p>
+            <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2NscjJ0Nzg4ZzRjNG5tNnFkdjJnM3RjM3V4ZndlZGNzanA0NTB0eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oz8xAFtqoOUUrsh7W/giphy.gif" alt="Party Popper" class="party-popper-gif">
+            <div class="next-actions">
+                <button id="next-player-btn" class="player-btn"><i class="fas fa-user-plus"></i> Növbəti Oyunçu</button>
+                <button id="show-leaderboard-btn" class="player-btn secondary"><i class="fas fa-trophy"></i> Liderlər Cədvəlini Göstər</button>
+            </div>
+        </div>
+
+        <div id="leaderboard-area" class="hidden">
+            <h2 class="game-over-title"><i class="fas fa-trophy"></i> Liderlər Cədvəli</h2>
+            <table id="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Yer</th>
+                        <th>Oyunçu Adı</th>
+                        <th>Xal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <button id="back-to-player-name-btn" class="player-btn"><i class="fas fa-arrow-left"></i> Yeni Oyuna Başla</button>
+            <button id="clear-leaderboard-btn" class="admin-btn incorrect" style="margin-top: 15px;"><i class="fas fa-trash-alt"></i> Cədvəli Təmizlə</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
