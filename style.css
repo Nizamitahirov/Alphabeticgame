@@ -18,13 +18,13 @@ body {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: var(--text-color);
     display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Dəyişdirildi */
+    flex-direction: column; /* Footer-in aşağıda qalması üçün */
+    justify-content: center; /* Konteyneri mərkəzə gətirmək üçün (əgər min-height 100vh ilə işləyirsə) */
+    align-items: center;
     min-height: 100vh;
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
-    overflow-y: auto; /* Sürüşdürmə üçün */
 }
 
 .container {
@@ -35,15 +35,15 @@ body {
     text-align: center;
     width: 100%;
     max-width: 800px;
-    margin-top: 20px; /* Başlıq üçün yer */
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
 .game-title {
     font-family: var(--font-title);
-    font-size: 3.5em;
+    font-size: 3.2em; /* Bir az kiçiltdim */
     color: var(--primary-color);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 .title-magic {
@@ -54,20 +54,72 @@ h2 {
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 20px;
+    font-size: 1.8em;
 }
 
 .hidden {
     display: none !important;
 }
 
+/* Initial Setup Area */
+#initial-setup-area {
+    margin-bottom: 30px;
+    padding: 25px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.07);
+    text-align: left;
+}
+#initial-setup-area h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+.setup-item {
+    margin-bottom: 18px;
+}
+.setup-item label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.95em;
+}
+#player-name-input,
+#timer-setting-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1.05em;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+#timer-setting-input {
+    max-width: 180px; /* Saniyə inputu üçün */
+}
+#player-name-input:focus,
+#timer-setting-input:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 0 0.25rem rgba(37, 117, 252, 0.2);
+}
+#start-player-game-btn {
+    display: block;
+    margin: 25px auto 0 auto;
+}
+
+
 /* Letter Selection */
+#letter-selection-area h2 {
+    font-size: 1.5em; /* Bir az kiçiltdim */
+}
 .letter-buttons-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
     gap: 12px;
+    margin-top: 15px;
     margin-bottom: 30px;
 }
-
 .letter-buttons-grid button {
     background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
     color: var(--light-text-color);
@@ -80,79 +132,86 @@ h2 {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
-
 .letter-buttons-grid button:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 }
+.letter-buttons-grid button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
 
 /* Game Area */
 .game-header-info {
     display: flex;
+    flex-wrap: wrap; /* Kiçik ekranlar üçün */
     justify-content: space-around;
     align-items: center;
     background-color: #e9ecef;
     padding: 12px;
     border-radius: 8px;
-    margin-bottom: 25px;
-    font-size: 1em;
+    margin-bottom: 20px; /* Azaldıldı */
+    font-size: 0.95em; /* Bir az kiçiltdim */
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
 }
-.info-item { margin: 0 10px; }
+.info-item {
+    margin: 5px 10px; /* Kiçik ekranlarda alt-alta düzüləndə boşluq */
+    white-space: nowrap; /* Adların qırılmaması üçün */
+}
 .highlight {
     font-weight: 700;
     color: var(--primary-color);
+    font-size: 1.05em; /* Bir az kiçiltdim */
+}
+
+#timer-area {
     font-size: 1.1em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f8d7da; /* Taymer üçün fərqli fon */
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    text-align: center;
+}
+#timer-area .highlight {
+    color: var(--danger-color);
+    font-size: 1.4em; /* Taymer rəqəmi daha böyük */
 }
 
 #question-display-area {
     background-color: #f8f9fa;
     padding: 20px;
     border-radius: 8px;
-    margin-bottom: 25px;
+    margin-bottom: 20px; /* Azaldıldı */
     border-left: 5px solid var(--accent-color);
+    min-height: 70px; /* Sual dəyişdikdə hoppanmasın */
 }
 .category-tag {
-    font-size: 0.9em;
+    font-size: 0.85em; /* Bir az kiçiltdim */
     color: #6c757d;
     margin-bottom: 8px;
     text-align: left;
 }
-#category-display { color: var(--secondary-color); }
+#category-display { color: var(--secondary-color); font-weight: bold; }
 #question-text {
-    font-size: 1.4em;
+    font-size: 1.3em; /* Bir az kiçiltdim */
     color: var(--text-color);
     margin-top: 5px;
     font-weight: 700;
-    line-height: 1.5;
-}
-
-#player-interaction-area {
-    margin-bottom: 30px;
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-#player-answer-input {
-    flex-grow: 1;
-    padding: 14px;
-    border: 2px solid #ced4da;
-    border-radius: 8px;
-    font-size: 1.1em;
-    transition: border-color 0.3s ease;
-}
-#player-answer-input:focus {
-    border-color: var(--secondary-color);
-    outline: none;
-    box-shadow: 0 0 0 0.2rem rgba(37, 117, 252, 0.25);
+    line-height: 1.4;
 }
 
 .player-btn {
     background: linear-gradient(45deg, var(--accent-color), #ffd000);
     color: var(--text-color);
     border: none;
-    padding: 14px 25px;
-    font-size: 1.1em;
+    padding: 13px 22px; /* Bir az kiçiltdim */
+    font-size: 1.05em; /* Bir az kiçiltdim */
     font-weight: 700;
     border-radius: 8px;
     cursor: pointer;
@@ -168,40 +227,31 @@ h2 {
 
 /* Admin Panel */
 #admin-panel {
-    background-color: #fdf0e6; /* Slightly different background for admin */
-    border: 1px solid #f3d1b3;
+    background-color: #fff3e0; /* Açıq narıncı ton */
+    border: 1px solid #ffe0b2;
     border-radius: 8px;
     padding: 20px;
     margin-top: 20px;
     text-align: left;
 }
 #admin-panel h4 {
-    font-size: 1.3em;
-    color: #c06000;
+    font-size: 1.2em; /* Bir az kiçiltdim */
+    color: #e65100; /* Tünd narıncı */
     margin-top: 0;
     margin-bottom: 15px;
-    border-bottom: 2px solid #f3d1b3;
+    border-bottom: 2px solid #ffe0b2;
     padding-bottom: 10px;
+    line-height: 1.4;
 }
 #admin-panel h4 i { margin-right: 10px; }
-
-#player-submitted-answer-display-area {
-    background-color: #fff9f2;
-    padding: 10px 15px;
-    border-radius: 6px;
-    margin-bottom: 15px;
-    border: 1px dashed #f3d1b3;
-}
-#player-submitted-answer-text {
-    font-style: italic;
-    color: var(--primary-color);
+#admin-panel h4 .highlight { /* Admin panelindəki hərf xatırlatması */
+    color: var(--danger-color);
     font-weight: bold;
-    margin-top: 5px;
-    word-break: break-word;
 }
+
 
 .admin-btn-secondary {
-    background-color: #ff9800;
+    background-color: #ff9800; /* Narıncı */
     color: white;
     border: none;
     padding: 10px 15px;
@@ -210,26 +260,32 @@ h2 {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-bottom: 10px;
-    display: block; /* Make it full width or adjust as needed */
+    display: inline-block; /* Tam en olmasın */
     width: auto;
 }
-.admin-btn-secondary:hover { background-color: #e68900; }
+.admin-btn-secondary:hover { background-color: #f57c00; }
 .admin-btn-secondary i { margin-right: 5px; }
+.admin-btn-secondary:disabled {
+    background-color: #bdbdbd;
+    cursor: not-allowed;
+}
 
 
 #example-answers-area {
     background-color: #fff;
     padding: 15px;
     border-radius: 6px;
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* Azaldıldı */
     border: 1px solid #eee;
-    max-height: 200px; /* Nümunələr çox olarsa */
+    max-height: 180px; /* Bir az kiçiltdim */
     overflow-y: auto;
 }
 #example-answers-area h5 {
     margin-top: 0;
     margin-bottom: 10px;
     color: #555;
+    font-size: 0.95em;
+    line-height: 1.4;
 }
 #example-answers-list {
     list-style-type: none;
@@ -237,45 +293,61 @@ h2 {
     margin-bottom: 0;
 }
 #example-answers-list li {
-    padding: 5px 0;
+    padding: 6px 0; /* Artırıldı */
     border-bottom: 1px dashed #eee;
     font-size: 0.95em;
 }
 #example-answers-list li:last-child { border-bottom: none; }
+#example-answers-area #no-examples-message {
+    padding: 10px;
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
 
 .admin-action-buttons {
     display: flex;
-    flex-wrap: wrap; /* Mobil üçün */
+    flex-wrap: wrap;
     gap: 10px;
-    justify-content: center; /* Düymələri mərkəzə gətirir */
+    justify-content: center;
+    margin-top: 15px; /* Boşluq əlavə edildi */
 }
 .admin-btn {
     color: white;
     border: none;
-    padding: 12px 20px;
-    font-size: 1em;
+    padding: 11px 18px; /* Bir az kiçiltdim */
+    font-size: 0.95em; /* Bir az kiçiltdim */
     font-weight: 700;
     border-radius: 8px;
     cursor: pointer;
     transition: opacity 0.3s ease, transform 0.2s ease;
-    flex-grow: 1; /* Mümkün qədər yer tutsun */
-    min-width: 150px; /* Minimum en */
+    flex-grow: 1;
+    min-width: 140px; /* Bir az kiçiltdim */
 }
-.admin-btn:hover { opacity: 0.85; transform: scale(1.02); }
+.admin-btn:hover:not(:disabled) { opacity: 0.85; transform: scale(1.02); }
 .admin-btn i { margin-right: 8px; }
+.admin-btn:disabled {
+    background-color: #9e9e9e !important; /* Rəngi dəyişdirdim */
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none;
+}
 
 .admin-btn.correct { background-color: var(--success-color); }
 .admin-btn.incorrect { background-color: var(--danger-color); }
-.admin-btn.next { background-color: var(--info-color); }
-.admin-btn.end { background-color: #6c757d; } /* Boz */
+.admin-btn.end { background-color: #757575; } /* Bir az tündləşdirdim */
 
 
 #feedback-message-area {
-    margin-top: 20px;
-    min-height: 30px; /* Yerin dəyişməməsi üçün */
+    margin-top: 15px; /* Azaldıldı */
+    min-height: 28px; /* Azaldıldı */
 }
 #feedback-message {
-    font-size: 1.2em;
+    font-size: 1.1em; /* Bir az kiçiltdim */
     font-weight: bold;
 }
 .feedback-correct { color: var(--success-color); }
@@ -283,117 +355,42 @@ h2 {
 .feedback-info { color: var(--info-color); }
 
 
-/* Game Over Area */
-#game-over-area { padding: 30px; }
+/* Player Game Over Area */
+#player-game-over-area { padding: 25px; } /* Azaldıldı */
 .game-over-title {
     font-family: var(--font-title);
-    font-size: 3em;
+    font-size: 2.8em; /* Bir az kiçiltdim */
     color: var(--primary-color);
     margin-bottom: 15px;
 }
-#game-over-area p {
-    font-size: 1.3em;
+#player-game-over-area p {
+    font-size: 1.25em; /* Bir az kiçiltdim */
     margin-bottom: 20px;
 }
 .highlight-final {
     font-weight: 900;
-    font-size: 1.8em;
+    font-size: 1.7em; /* Bir az kiçiltdim */
     color: var(--success-color);
     display: block;
     margin-top: 10px;
 }
 .party-popper-gif {
-    width: 150px;
+    width: 130px; /* Bir az kiçiltdim */
     height: auto;
     margin: 15px 0;
 }
-
-/* Media Queries for responsiveness */
-@media (max-width: 600px) {
-    .container {
-        padding: 20px;
-    }
-    .game-title {
-        font-size: 2.5em;
-    }
-    .letter-buttons-grid {
-        grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
-        gap: 8px;
-    }
-    .letter-buttons-grid button {
-        font-size: 1.1em;
-        padding: 12px 0;
-    }
-    .admin-action-buttons {
-        flex-direction: column; /* Düymələr alt-alta düzülsün */
-    }
-    .admin-btn {
-        width: 100%; /* Tam en tutsun */
-    }
-    #player-interaction-area {
-        flex-direction: column;
-        gap: 10px;
-    }
-    #player-answer-input, .player-btn {
-        width: 100%;
-        box-sizing: border-box; /* Padding daxil olmaqla en */
-    }
-}
-
-/* ... (əvvəlki CSS kodu olduğu kimi qalır) ... */
-
-/* Player Name Area */
-#player-name-area {
-    margin-bottom: 30px;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-#player-name-area h2 {
-    margin-bottom: 15px;
-}
-#player-name-input {
-    width: calc(100% - 30px); /* Padding çıxılır */
-    max-width: 300px;
-    padding: 12px 15px;
-    margin-bottom: 15px;
-    border: 2px solid #ced4da;
-    border-radius: 8px;
-    font-size: 1.1em;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-#player-name-input:focus {
-    border-color: var(--secondary-color);
-    outline: none;
-    box-shadow: 0 0 0 0.2rem rgba(37, 117, 252, 0.25);
-}
-
-/* Game Area Header Info Sual Sayı */
-#total-questions-per-player {
-    color: #6c757d;
-    font-weight: normal;
-}
-
-
-/* Player Game Over Area */
-#player-game-over-area {
-    padding: 30px;
-}
 .next-actions {
-    margin-top: 25px;
+    margin-top: 20px; /* Azaldıldı */
     display: flex;
     gap: 15px;
     justify-content: center;
     flex-wrap: wrap;
 }
 .next-actions .player-btn {
-    min-width: 200px;
+    min-width: 180px; /* Bir az kiçiltdim */
 }
 .player-btn.secondary {
-    background: linear-gradient(45deg, #6c757d, #495057); /* Boz gradient */
+    background: linear-gradient(45deg, #6c757d, #495057);
 }
 .player-btn.secondary:hover {
     background: linear-gradient(45deg, #5a6268, #343a40);
@@ -410,10 +407,11 @@ h2 {
     border-collapse: collapse;
     margin-bottom: 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-size: 0.95em; /* Cədvəl mətnini bir az kiçiltdim */
 }
 #leaderboard-table th, #leaderboard-table td {
     border: 1px solid #ddd;
-    padding: 12px 15px;
+    padding: 10px 12px; /* Bir az azaldıldı */
     text-align: left;
 }
 #leaderboard-table th {
@@ -427,64 +425,95 @@ h2 {
 #leaderboard-table tbody tr:hover {
     background-color: #f1f1f1;
 }
-#leaderboard-table td:first-child, #leaderboard-table th:first-child {
+#leaderboard-table td:first-child, #leaderboard-table th:first-child { /* Yer sütunu */
     text-align: center;
-    width: 60px;
+    width: 50px; /* Bir az daraltdım */
 }
-#leaderboard-table td:last-child, #leaderboard-table th:last-child {
+#leaderboard-table td:last-child, #leaderboard-table th:last-child { /* Xal sütunu */
     text-align: center;
-    width: 100px;
+    width: 80px; /* Bir az daraltdım */
 }
 
-/* ... (qalan CSS kodu olduğu kimi qalır) ... */
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: auto; /* Konteynerdən sonra footer-in aşağıda qalmasını təmin edir */
+    background-color: #2c3e50; /* Daha tünd bir rəng */
+    color: #ecf0f1; /* Açıq rəng */
+    font-size: 0.85em; /* Bir az kiçiltdim */
+    width: 100%; /* Tam en */
+    box-sizing: border-box;
+    border-top: 4px solid var(--accent-color); /* Vurğu xətti */
+}
+footer p {
+    margin: 6px 0;
+}
+
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 25px;
+    }
+    .game-title {
+        font-size: 2.8em;
+    }
+    .game-header-info {
+        font-size: 0.9em;
+    }
+    .info-item {
+        margin: 3px 8px;
+    }
+    #question-text {
+        font-size: 1.2em;
+    }
+    .admin-btn {
+        min-width: 130px;
+        padding: 10px 15px;
+    }
+    .game-over-title {
+        font-size: 2.5em;
+    }
+}
 
 @media (max-width: 600px) {
-    /* ... (əvvəlki media query-lər) ... */
+    body { padding: 10px; }
+    .container { padding: 15px; }
+    .game-title { font-size: 2.2em; }
+    h2 { font-size: 1.5em; }
+    .letter-buttons-grid {
+        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+        gap: 8px;
+    }
+    .letter-buttons-grid button {
+        font-size: 1.1em;
+        padding: 10px 0;
+    }
+    .game-header-info {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+    .info-item { width: 100%; text-align: left; margin: 4px 0; }
+    #question-text { font-size: 1.1em; }
+    .admin-action-buttons {
+        flex-direction: column;
+    }
+    .admin-btn {
+        width: 100%;
+    }
     .next-actions .player-btn {
         width: 100%;
         min-width: unset;
     }
      #leaderboard-table {
-        font-size: 0.9em;
+        font-size: 0.85em;
     }
     #leaderboard-table th, #leaderboard-table td {
-        padding: 8px 10px;
+        padding: 6px 8px;
+    }
+    footer {
+        font-size: 0.8em;
     }
 }
-
-/* ... (əvvəlki CSS kodu olduğu kimi qalır) ... */
-
-#admin-panel h4 .highlight { /* Admin panelindəki hərf xatırlatması üçün */
-    color: var(--danger-color); /* Diqqət çəksin */
-    font-weight: bold;
-}
-
-#example-answers-area #no-examples-message {
-    padding: 10px;
-    background-color: #fff3cd;
-    color: #856404;
-    border: 1px solid #ffeeba;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-
-/* ... (qalan CSS kodu olduğu kimi qalır) ... */
-
-/* ... (əvvəlki CSS kodu olduğu kimi qalır) ... */
-
-#timer-area {
-    font-size: 1.1em;
-    font-weight: bold;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    padding: 10px;
-    background-color: #e9ecef;
-    border-radius: 5px;
-    text-align: center;
-}
-#timer-area .highlight {
-    color: var(--danger-color); /* Taymer qırmızı olsun */
-    font-size: 1.3em;
-}
-
-/* ... (qalan CSS kodu olduğu kimi qalır) ... */
