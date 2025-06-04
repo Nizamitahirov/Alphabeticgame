@@ -1,52 +1,76 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- GENİŞ SUALLAR BAZASI (NÜMUNƏ - 300-ə qədər genişləndirin) ---
     const allQuestionsPool = [
-        // Ev Əşyaları
+        // Ev Əşyaları (Minimum 25-ə çatdırın!)
         { category: "Ev Əşyaları", question: "Qonaq otağında olan bir mebel.", example_ideas: ["divan", "kreslo", "stol", "televizor altlığı", "kitab rəfi", "pərdə", "xalça"] },
         { category: "Ev Əşyaları", question: "Yataq otağında istifadə edilən bir şey.", example_ideas: ["yataq", "dolab", "güzgü", "gecə lampası", "yastıq", "ədyal", "komod"] },
         { category: "Ev Əşyaları", question: "Hamam otağında olan bir ləvazimat.", example_ideas: ["sabun", "şampun", "dəsmal", "diş fırçası", "fen", "lif", "tarak"] },
         { category: "Ev Əşyaları", question: "Təmizlik üçün istifadə edilən vasitə.", example_ideas: ["süpürgə", "tozsoran", "bez", "maye sabun", "fırça", "vedrə", "əlcək"] },
-        { category: "Ev Əşyaları", question: "Balkonda ola biləcək bir əşya.", example_ideas: ["stul", "gül dibçəyi", "kiçik masa", "asılqan", "skamya", "şezlonq"] },
-        { category: "Ev Əşyaları", question: "Mətbəxdə yemək bişirmək üçün alət.", example_ideas: ["qazan", "tava", "bıçaq", "blender", "mikser", "süzgəc"] },
-        { category: "Ev Əşyaları", question: "İşıqlandırma üçün istifadə olunan.", example_ideas: ["lampa", "çılçıraq", "bra", "projektor", "fənər"] },
-        { category: "Ev Əşyaları", question: "Pəncərədə istifadə olunan bir şey.", example_ideas: ["pərdə", "jalüz", "şüşə", "pəncərəaltı", "tor"] },
-        { category: "Ev Əşyaları", question: "Divardan asılan bir dekorasiya.", example_ideas: ["şəkil", "saat", "güzgü", "xalça (kiçik)", "pano"] },
-        { category: "Ev Əşyaları", question: "Yemək masasında olan bir şey.", example_ideas: ["boşqab", "stəkan", "qaşıq", "çəngəl", "salat qabı", "süfrə"] },
-        // ... 10 ədəd Ev Əşyaları (daha 10-20 ədəd əlavə edin)
-
-        // Heyvanlar
-        { category: "Heyvanlar", question: "Evdə saxlanıla bilən bir heyvan.", example_ideas: ["pişik", "it", "quş", "balıq", "hamster", "dovşan", "tısbağa"] },
-        { category: "Heyvanlar", question: "Afrikada yaşayan bir vəhşi heyvan.", example_ideas: ["şir", "fil", "zürafə", "zebra", "kərgədan", "begemot", "leopard"] },
-        { category: "Heyvanlar", question: "Uça bilən bir canlı.", example_ideas: ["quş", "yarasa", "kəpənək", "arı", "ağcaqanad", "göyərçin", "qartal"] },
-        { category: "Heyvanlar", question: "Suda yaşayan bir məməli.", example_ideas: ["balina", "delfin", "suiti", "dəniz donuzu", "dəniz şiri"] },
-        { category: "Heyvanlar", question: "Sürünən bir heyvan.", example_ideas: ["ilan", "timsah", "kərtənkələ", "tısbağa", "buqələmun"] },
-        { category: "Heyvanlar", question: "Meşədə yaşayan bir gəmirici.", example_ideas: ["sincab", "siçan (çöl)", "dələ", "kirpi (qismən)", "gəmirici porsuq"] },
-        { category: "Heyvanlar", question: "Çox hündür boylu bir heyvan.", example_ideas: ["zürafə", "fil (Asiya)", "dəvəquşu"] },
-        { category: "Heyvanlar", question: "Qış yuxusuna gedən bir heyvan.", example_ideas: ["ayı", "porsuq", "yarasa (bəzi növləri)", "ilan (soyuq havada)", "kirpi"] },
-        { category: "Heyvanlar", question: "Zəhərli bir həşərat.", example_ideas: ["arı (bəzi insanlar üçün)", "eşşəkarısı", "əqrəb", "qaraqurd (hörümçək)"] },
-        { category: "Heyvanlar", question: "Çöldə yaşayan bir quş.", example_ideas: ["sərçə", "qarğa", "bildirçin", "kəklik", "turac"] },
-        // ... 10 ədəd Heyvanlar (daha 20-30 ədəd əlavə edin)
-
-        // Peşələr
-        { category: "Peşələr", question: "Sənət sahəsində bir peşə.", example_ideas: ["rəssam", "musiqiçi", "aktyor", "heykəltaraş", "dizayner", "yazıçı", "rejissor"] },
-        { category: "Peşələr", question: "Elmlə məşğul olan bir insan.", example_ideas: ["alim", "fizik", "kimyaçı", "bioloq", "astronom", "arxeoloq", "geoloq"] },
-        // ... (Digər kateqoriyalar və suallar əvvəlki cavabdakı kimi genişləndirilməlidir)
-        // ... Hədəf 300 sual və hər biri üçün "example_ideas"
+        { category: "Ev Əşyaları", question: "Mətbəxdə yemək bişirmək üçün alət.", example_ideas: ["qazan", "tava", "bıçaq", "blender", "mikser", "süzgəc", "rende"] },
+        { category: "Ev Əşyaları", question: "İşıqlandırma üçün istifadə olunan.", example_ideas: ["lampa", "çılçıraq", "bra", "projektor", "fənər", "spot"] },
+        { category: "Ev Əşyaları", question: "Pəncərədə istifadə olunan bir şey.", example_ideas: ["pərdə", "jalüz", "şüşə", "pəncərəaltı", "tor", "dəstək"] },
+        { category: "Ev Əşyaları", question: "Divardan asılan bir dekorasiya.", example_ideas: ["şəkil", "saat", "güzgü", "xalça (kiçik)", "pano", "çərçivə"] },
+        { category: "Ev Əşyaları", question: "Yemək masasında olan bir şey.", example_ideas: ["boşqab", "stəkan", "qaşıq", "çəngəl", "salat qabı", "süfrə", "peçetka"] },
+        { category: "Ev Əşyaları", question: "Ofisdə iş masasının üzərində olan.", example_ideas: ["kompüter", "qələmdan", "monitor", "klaviatura", "kağız", "stapler"] },
+        { category: "Ev Əşyaları", question: "Geyim saxlamaq üçün mebel.", example_ideas: ["şkaf", "qarderob", "komod", "asılqan (stend)"] },
+        { category: "Ev Əşyaları", question: "Yerdə sərilən bir şey.", example_ideas: ["xalça", "palaz", "kilim", "linoleum", "parket"] },
+        { category: "Ev Əşyaları", question: "Bitki əkmək üçün qab.", example_ideas: ["dibçək", "vaza (gül üçün)", "kassa (şitil üçün)"] },
+        { category: "Ev Əşyaları", question: "Soyuq saxlamaq üçün məişət texnikası.", example_ideas: ["soyuducu", "dondurucu"] },
+        { category: "Ev Əşyaları", question: "İstilənmək üçün istifadə olunan.", example_ideas: ["radiator", "soba (elektrik/qaz)", "kamin", "kondisioner (isti rejim)"] },
+        { category: "Ev Əşyaları", question: "Qapını açmaq/bağlamaq üçün.", example_ideas: ["açar", "dəstək", "kilid", "zəncir"] },
+        { category: "Ev Əşyaları", question: "Musiqi dinləmək üçün cihaz.", example_ideas: ["dinamik", "qulaqlıq", "musiqi mərkəzi", "radio"] },
+        { category: "Ev Əşyaları", question: "Kitab qoymaq üçün yer.", example_ideas: ["rəf", "şkaf", "polka", "kitabxana (mebel)"] },
+        { category: "Ev Əşyaları", question: "Çay dəmləmək üçün qab.", example_ideas: ["çaydan", "samovar", "termos"] },
+        { category: "Ev Əşyaları", question: "Oturmaq üçün yumşaq mebel.", example_ideas: ["kreslo", "divan", "pufik", "banketka"] },
+        { category: "Ev Əşyaları", question: "Yazı yazmaq üçün səth.", example_ideas: ["masa", "parta", " yazı lövhəsi"] },
+        { category: "Ev Əşyaları", question: "Paltar yumaq üçün maşın.", example_ideas: ["paltaryuyan"] },
+        { category: "Ev Əşyaları", question: "Qab yumaq üçün maşın.", example_ideas: ["qabyuyan"] },
+        { category: "Ev Əşyaları", question: "Ütü vurmaq üçün altlıq.", example_ideas: ["ütü masası"] },
+        { category: "Ev Əşyaları", question: "Zibil atmaq üçün qab.", example_ideas: ["zibil qutusu", "vedrə (zibil üçün)"] },
+        // Daha çox sual əlavə edin ki, cəmi ən az 25 olsun
     ];
 
-    const sampleVocabulary = { /* ... əvvəlki lüğətiniz (genişləndirilmiş) ... */
-        A: ["alma", "armud", "avtobus", "ayı", "ana", "açıqca", "aş", "ad", "alim", "aktyor", "astronom", "araba", "arxeoloq", "asılqan", "ağac", "ağcaqanad", "ayran"],
-        B: ["banan", "balıq", "bıçaq", "bina", "bağ", "böyük", "balaca", "boşqab", "basketbol", "bioloq", "bənna", "balina", "bazar", "balkon", "bra", "blender", "bez", "bildirçin", "buqələmun", "badambura"],
-        // ... (bütün hərflər üçün lüğəti MÜTLƏQ genişləndirin)
+    const sampleVocabulary = {
+        A: ["alma", "armud", "avtobus", "ayı", "ana", "açıqca", "aş", "ad", "alim", "aktyor", "astronom", "araba", "arxeoloq", "asılqan", "ağac", "ağcaqanad", "ayran", "aşpaz", "aqronom", "Avropa", "Afrika", "Atlantik", "açar", "ağ"],
+        B: ["banan", "balıq", "bıçaq", "bina", "bağ", "böyük", "balaca", "boşqab", "basketbol", "bioloq", "bənna", "balina", "bazar", "balkon", "bra", "blender", "bez", "bildirçin", "buqələmun", "badambura", "begemot", "barmen", "bələdçi", "bitki", "banketka", "boz"],
+        C: ["canavar", "corab", "cib", "cəld", "cücə", "cümə", "cərrah", "ceyran", "cin", "cədvəl", "cızma-qara"],
+        Ç: ["çay", "çanta", "çətir", "çiyələk", "çəkic", "çiçək", "çinar", "çərşənbə", "çoban", "çörək", "çəngəl", "çərçivə", "çılçıraq", "çöl", "çəmən", "çaydan", "çəhrayı"],
+        D: ["dovşan", "dəftər", "dəniz", "dağ", "darvaza", "divan", "dolma", "dizayner", "delfin", "dəmir", "düşbərə", "dəsmal", "diş", "direktor", "dekan", "dülgər", "dəvəquşu", "dibçək", "dinamik", "dondurucu", "dəstək", "duman"],
+        E: ["ev", "eşşək", "elm", "elektrik", "ekran", "enerji", "effekt", "elan", "era", "etiraf", "ekskavator", "emulsiya"],
+        Ə: ["ərik", "əlcək", "əsgər", "ədyal", "ətir", "əsas", "əczaçı", "əfsanə", "əyləncə", "əqrəb", "əkinçi", "əhali", "ərazi", "əjdaha", "əlifba"],
+        F: ["fincan", "fil", "fırça", "futbol", "fərqli", "Fransa", "fizik", "fen", "fiqur", "fontan", "fermer", "fizioterapevt", "fənər", "fakt", "fabrika", "fosfor"],
+        G: ["gəmi", "günəş", "gül", "göz", "gecə", "göy", "gitara", "gilas", "geyim", "güzgü", "geoloq", "göyərçin", "gəmirici", "gəzinti", "qarderob", "qaz", "qırmızı"], // "Q" ilə başlayanları da bura əlavə etdim ki, lüğət zənginləşsin
+        Ğ: ["ğar (mağara)", "ğəliz (çətin)"], // Hələ də çox az
+        H: ["həkim", "heyva", "hava", "hörümçək", "hesab", "həndbol", "hokkey", "hamster", "hekayə", "hakim", "hüquqşünas", "heyvan", "hovuz", "həftə", "hədiyyə"],
+        X: ["xalça", "xiyar", "xəritə", "xoruz", "xəstə", "xizək", "xəbər", "xəmir", "xəzinə", "xarakter", "xidmət", "xurma", "xəttat", "xlor"],
+        I: ["ıspanaq", "ıslıq", "işıq", "isti", "ırmaq (çay)", "ılgım (miraj)", "ızqara"],
+        İ: ["ilan", "iynə", "isti", "it", "iki", "insan", "iş", "internet", "İtaliya", "inşaatçı", "idman", "inək", "iqlim", "ixtira", "istiqamət", "ifadə"],
+        J: ["jurnal", "jilet", "jeton", "judo", "jaket", "jalüz", "jele", "jokey"],
+        K: ["kitab", "keçi", "küçə", "kreslo", "kartof", "körpü", "kompüter", "kaktus", "kəpənək", "qəhvə (Kofe)", "kəklik", "kapitan", "kassir", "klaviatura", "komod", "konfet", "kassa", "kilim", "kamin", "kondisioner", "kilid"],
+        Q: ["qarpız", "qələm", "qapı", "qar", "qayıq", "qaşıq", "qutu", "qırmızı", "qızıl", "qonaq", "qaymaq", "qazan", "qartal", "qaranquş", "qoyun", "qəzet", "qəsr", "qələmdan", "qulaqlıq", "qabyuyan"],
+        L: ["limon", "lampa", "lələk", "layla", "lacivərd", "limonad", "lobya", "lüğət", "leopar", "lif", "laboratoriya", "linoleum", "lokomotiv"],
+        M: ["maşın", "meymun", "maral", "mavi", "məktəb", "müəllim", "memar", "musiqi", "marka", "Mars", "mikser", "maye", "mühəndis", "məşqçi", "müstəntiq", "monitor", "musiqi mərkəzi", "mina"],
+        N: ["nar", "nənə", "neft", "nöqtə", "nailiyyət", "Novruz", "notarius", "nağıl", "nərgiz", "nəqliyyat", "nəfəs", "nümunə", "narıncı", "neon"],
+        O: ["odun", "otaq", "oyun", "orta", "obraz", "okean", "oksigen", "opera", "ofisiant", "obyekt", "od", "ocaq", "otel"],
+        Ö: ["ördək", "ömür", "örtük", "ölkə", "özəl", "ölçü", "öküz", "öskürək", "öyrənmək", "önlük"],
+        P: ["palıd", "pişik", "paltar", "pəncərə", "pul", "polis", "Python", "plov", "piano", "paxlava", "pendir", "pilot", "prokuror", "professor", "psixoloq", "pərdə", "projektor", "peçetka", "palaz", "parket", "parta", "paltaryuyan", "pufik", "polka", "pano"],
+        R: ["radio", "rəng", "rəsm", "robot", "ruh", "roman", "rəssam", "reqbi", "Respublika", "rejissor", "rende", "raket", "radiator", "rəf", "rotor"],
+        S: ["saat", "soba", "su", "səhər", "sarı", "sincab", "sabun", "sakit", "Saturn", "skripka", "sıyıq", "stol", "stul", "stəkan", "sürücü", "satıcı", "süpürgə", "spot", "süzgəc", "samovar", "stapler", "sirk"],
+        Ş: ["şar", "şir", "şəkil", "şəhər", "şokolad", "şam", "şampun", "şəkərbura", "şərf", "şahmat", "şüşə", "şezlonq", "şorba", "şkaf", "şosse"],
+        T: ["top", "tülkü", "telefon", "təyyarə", "torpaq", "tar", "timsah", "tibb", "toster", "tarix", "tava", "tarak", "tərbiyəçi", "turac", "tısbağa", "televizor", "trapesiya", "termos", "traktor"],
+        U: ["ulduz", "un", "uzaq", "uca", "uşaq", "universitet", "uğur", "usta", "uniforma", "uran"],
+        Ü: ["üzüm", "ürək", "üç", "üst", "ütgəc", "ümid", "üzgüçülük", "ünsiyyət", "ülgüc", "üzük"],
+        V: ["vaqon", "velosiped", "vaza", "vətən", "varlı", "vulkan", "vəkil", "vitamin", "Venera", "voleybol", "varan", "vedrə", "vint"],
+        Y: ["yumurta", "yağış", "yarpaq", "yaşıl", "yol", "yataq", "yanğınsöndürən", "Yupiter", "yaxata", "yastıq", "yazıçı", "yarasa", "yelləncək"],
+        Z: ["zebra", "zəng", "zeytun", "zibil", "zaman", "zürafə", "zanbaq", "zərgərlik", "Zevs", "zoomühəndis", "zirvə", "zəlzələ", "zəncir", "zavod"]
     };
 
-    const AZERBAIJANI_ALPHABET = Object.keys(sampleVocabulary).filter(letter => sampleVocabulary[letter] && sampleVocabulary[letter].length > 0);
+    const AZERBAIJANI_ALPHABET = Object.keys(sampleVocabulary).filter(letter => sampleVocabulary[letter] && sampleVocabulary[letter].length > 0 && !(sampleVocabulary[letter].length === 1 && sampleVocabulary[letter][0].includes("çətin")));
     const QUESTIONS_PER_PLAYER = 25;
-    const DEFAULT_ANSWER_TIME_LIMIT = 10; // Saniyə (admin dəyişə bilər)
+    const DEFAULT_ANSWER_TIME_LIMIT = 10;
     const FEEDBACK_DISPLAY_TIME = 1500;
-    const LEADERBOARD_KEY = 'harfSehrbaziLeaderboardV4';
+    const LEADERBOARD_KEY = 'harfSehrbaziLeaderboardV6';
 
-    let adminSetAnswerTimeLimit = DEFAULT_ANSWER_TIME_LIMIT; // Adminin təyin etdiyi vaxt
+    let adminSetAnswerTimeLimit = DEFAULT_ANSWER_TIME_LIMIT;
     let currentPlayerName = '';
     let selectedLetter = '';
     let score = 0;
@@ -59,12 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let globallyUsedQuestions = new Set();
     let questionsForCurrentPlayer = [];
 
-    // DOM Elementləri
-    const initialSetupArea = document.getElementById('initial-setup-area'); // YENİ
+    const initialSetupArea = document.getElementById('initial-setup-area');
     const playerNameInput = document.getElementById('player-name-input');
-    const timerSettingInput = document.getElementById('timer-setting-input'); // YENİ
+    const timerSettingInput = document.getElementById('timer-setting-input');
     const startPlayerGameBtn = document.getElementById('start-player-game-btn');
-    // ... (qalan DOM elementləri əvvəlki kimi)
     const currentPlayerNameDisplayLetter = document.getElementById('current-player-name-display-letter');
     const currentPlayerNameDisplayGame = document.getElementById('current-player-name-display-game');
     const letterSelectionArea = document.getElementById('letter-selection-area');
@@ -100,29 +122,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearLeaderboardBtn = document.getElementById('clear-leaderboard-btn');
     const copyrightYearSpan = document.getElementById('copyright-year');
 
-
     function initGameSetup() {
         totalQuestionsPerPlayerDisplay.textContent = QUESTIONS_PER_PLAYER;
         createLetterButtons();
         if (copyrightYearSpan) {
             copyrightYearSpan.textContent = new Date().getFullYear();
         }
-        showScreen('initial-setup'); // İlkin ayarlar ekranı ilə başla
+        showScreen('initial-setup');
     }
 
     function showScreen(screenName) {
-        initialSetupArea.classList.add('hidden'); // YENİ
+        initialSetupArea.classList.add('hidden');
         letterSelectionArea.classList.add('hidden');
         gameArea.classList.add('hidden');
         playerGameOverArea.classList.add('hidden');
         leaderboardArea.classList.add('hidden');
 
-        if (screenName === 'initial-setup') initialSetupArea.classList.remove('hidden'); // YENİ
-        else if (screenName === 'letter-selection') letterSelectionArea.classList.remove('hidden');
-        else if (screenName === 'game') gameArea.classList.remove('hidden');
-        else if (screenName === 'player-game-over') playerGameOverArea.classList.remove('hidden');
-        else if (screenName === 'leaderboard') {
-            leaderboardArea.classList.remove('hidden');
+        const screenElement = document.getElementById(screenName + '-area');
+        if (screenElement) {
+            screenElement.classList.remove('hidden');
+        } else {
+            console.error("Ekran tapılmadı: " + screenName + "-area");
+        }
+
+        if (screenName === 'leaderboard') {
             displayLeaderboard();
         }
     }
@@ -135,72 +158,87 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Zəhmət olmasa, oyunçu adını daxil edin.");
             return;
         }
-        if (isNaN(timerValue) || timerValue < 3) { // Minimum 3 saniyə
-            alert("Zəhmət olmasa, hər sual üçün düzgün vaxt daxil edin (minimum 3 saniyə).");
+        if (isNaN(timerValue) || timerValue < 3 || timerValue > 60) {
+            alert("Zəhmət olmasa, hər sual üçün düzgün vaxt daxil edin (3-60 saniyə).");
+            return;
+        }
+
+        if (allQuestionsPool.length < QUESTIONS_PER_PLAYER) {
+            alert(`Oyun başlaya bilməz! Sual hovuzunda minimum ${QUESTIONS_PER_PLAYER} sual olmalıdır. Hazırda ${allQuestionsPool.length} sual var. Zəhmət olmasa, script.js faylına daha çox sual əlavə edin.`);
             return;
         }
 
         currentPlayerName = name;
-        adminSetAnswerTimeLimit = timerValue; // Adminin təyin etdiyi vaxtı qlobal olaraq saxla
-
+        adminSetAnswerTimeLimit = timerValue;
         currentPlayerNameDisplayLetter.textContent = currentPlayerName;
         currentPlayerNameDisplayGame.textContent = currentPlayerName;
-        // playerNameInput.value = ''; // Ad inputunu növbəti oyunçu üçün boşaltmayaq, çünki ilkin setup bir dəfə olur.
-                                      // Növbəti oyunçu düyməsi basıldıqda yenidən bu ekrana qayıdılacaq.
-        prepareQuestionsForCurrentPlayer();
-        showScreen('letter-selection');
+        
+        if (prepareQuestionsForCurrentPlayer()) {
+            showScreen('letter-selection');
+        }
     });
 
     function prepareQuestionsForCurrentPlayer() {
         questionsForCurrentPlayer = [];
-        let availablePool = allQuestionsPool.filter(q => !globallyUsedQuestions.has(q.question));
+        let availableForSelectionPool = shuffleArray([...allQuestionsPool]); // Bütün hovuzu qarışdırırıq
+        let selectedCount = 0;
 
-        if (availablePool.length < QUESTIONS_PER_PLAYER) {
-            console.warn("Xəbərdarlıq: Unikal sual sayı azdır. Təkrarlanma ola bilər.");
-            // Əgər unikal sual bitibsə, bütün hovuzdan yenidən təsadüfi seçirik
-            // Bu zaman globallyUsedQuestions-u nəzərə almırıq ki, oyun davam etsin
-            let tempPool = shuffleArray([...allQuestionsPool]);
-             for(let i = 0; i < QUESTIONS_PER_PLAYER; i++){
-                if(tempPool.length > 0){
-                    let questionToAdd = tempPool.pop();
-                    questionsForCurrentPlayer.push(questionToAdd);
-                    // Hətta təkrarlanan sual olsa belə, bu oyunçu üçün istifadə edildiyini qeyd edək.
-                    // Amma qlobal istifadəyə əlavə etməyək ki, digər oyunçulara da gələ bilsin.
-                } else {
-                    // Əgər bütün hovuzda belə sual qalmayıbsa (çox kiçik hovuz)
-                    alert("Sual hovuzunda kifayət qədər sual yoxdur!");
-                    showScreen('initial-setup'); // Oyunu başa qaytar
-                    return;
+        // Əvvəlcə qlobal olaraq istifadə edilməmişlərdən seçməyə çalışaq
+        let uniquePool = availableForSelectionPool.filter(q => !globallyUsedQuestions.has(q.question));
+        
+        for (let i = 0; i < uniquePool.length && selectedCount < QUESTIONS_PER_PLAYER; i++) {
+            questionsForCurrentPlayer.push(uniquePool[i]);
+            globallyUsedQuestions.add(uniquePool[i].question);
+            selectedCount++;
+        }
+
+        // Əgər hələ də 25 sual yığılmayıbsa, o zaman təkrarlanmaya icazə verərək qalanları tamamla
+        // (amma eyni oyunçu üçün təkrarlanmasın)
+        if (selectedCount < QUESTIONS_PER_PLAYER) {
+            console.warn(`Qlobal unikal suallar bitdi (${selectedCount} ədəd seçildi). Qalan suallar təkrarlana bilər (fərqli oyunçular üçün).`);
+            for (let i = 0; i < availableForSelectionPool.length && selectedCount < QUESTIONS_PER_PLAYER; i++) {
+                const questionCandidate = availableForSelectionPool[i];
+                // Bu oyunçu üçün bu sualın təkrarlanmadığını yoxla
+                if (!questionsForCurrentPlayer.some(q => q.question === questionCandidate.question)) {
+                    questionsForCurrentPlayer.push(questionCandidate);
+                    // globallyUsedQuestions-a artıq əlavə olunub və ya burada da əlavə edilə bilər (problem yaratmır)
+                    globallyUsedQuestions.add(questionCandidate.question);
+                    selectedCount++;
                 }
             }
-        } else {
-             availablePool = shuffleArray(availablePool);
-             for (let i = 0; i < QUESTIONS_PER_PLAYER; i++) {
-                const questionToAdd = availablePool[i];
-                questionsForCurrentPlayer.push(questionToAdd);
-                globallyUsedQuestions.add(questionToAdd.question); // Qlobal istifadəyə əlavə et
-            }
         }
-        // questionsForCurrentPlayer massivini yenidən qarışdıraq ki, suallar həmişə eyni ardıcıllıqda gəlməsin
+        
+        if (questionsForCurrentPlayer.length < QUESTIONS_PER_PLAYER) {
+            // Bu mesaj çox güman ki, allQuestionsPool-un özü 25-dən az olduqda görünəcək
+            alert(`Oyunçu üçün ${QUESTIONS_PER_PLAYER} sual seçilə bilmədi. Mövcud sual sayı: ${questionsForCurrentPlayer.length}. Sual hovuzunu yoxlayın.`);
+            showScreen('initial-setup');
+            return false;
+        }
         questionsForCurrentPlayer = shuffleArray(questionsForCurrentPlayer);
+        return true;
     }
 
-
     function createLetterButtons() {
-        // ... (əvvəlki kimi)
         letterButtonsContainer.innerHTML = '';
-        AZERBAIJANI_ALPHABET.forEach(letter => {
-            if (sampleVocabulary[letter] && sampleVocabulary[letter].length > 0) {
-                const button = document.createElement('button');
-                button.textContent = letter;
-                button.addEventListener('click', () => selectLetterForPlayer(letter));
-                letterButtonsContainer.appendChild(button);
-            }
+        const availableLetters = Object.keys(sampleVocabulary).filter(letter => {
+            const words = sampleVocabulary[letter];
+            return words && words.length > 0 && !(words.length === 1 && words[0].toLowerCase().includes("çətin"));
+        });
+        
+        if (availableLetters.length === 0) {
+            letterButtonsContainer.innerHTML = "<p style='color: var(--danger-color); font-weight: bold;'>Lüğətdə heç bir hərf üçün uyğun söz tapılmadı. Oyun davam edə bilməz.</p>";
+            return;
+        }
+
+        availableLetters.forEach(letter => {
+            const button = document.createElement('button');
+            button.textContent = letter;
+            button.addEventListener('click', () => selectLetterForPlayer(letter));
+            letterButtonsContainer.appendChild(button);
         });
     }
 
     function selectLetterForPlayer(letter) {
-        // ... (əvvəlki kimi)
         selectedLetter = letter.toUpperCase();
         chosenLetterDisplay.textContent = selectedLetter;
         exampleLetterPlaceholder.textContent = selectedLetter;
@@ -227,22 +265,22 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(feedbackTimeoutId);
         clearTimeout(answerTimerId);
 
-        if (questionsAskedThisPlayerGame >= QUESTIONS_PER_PLAYER || questionsForCurrentPlayer.length === 0) {
+        if (questionsAskedThisPlayerGame >= QUESTIONS_PER_PLAYER || questionsAskedThisPlayerGame >= questionsForCurrentPlayer.length) {
             endPlayerGame();
             return;
         }
 
-        // Sualı questionsForCurrentPlayer-dən götürürük (pop etmirik, çünki artıq qarışdırılıb)
         currentQuestion = questionsForCurrentPlayer[questionsAskedThisPlayerGame];
-        questionsAskedThisPlayerGame++; // Bunu sualı göstərdikdən sonra artırmaq daha yaxşıdır
+        
+        questionCountDisplay.textContent = questionsAskedThisPlayerGame + 1;
 
         categoryDisplay.textContent = currentQuestion.category;
         questionText.textContent = currentQuestion.question;
-        questionCountDisplay.textContent = questionsAskedThisPlayerGame;
 
         feedbackMessage.textContent = `${currentPlayerName} cavabını düşünür...`;
         feedbackMessage.className = 'feedback-info';
-        exampleAnswersArea.classList.add('hidden');
+        exampleAnswersArea.classList.add('hidden'); // Nümunələri gizlət
+        toggleExamplesBtn.innerHTML = '<i class="fas fa-lightbulb"></i> Nümunə Cavabları Göstər'; // Düymə mətnini sıfırla
         noExamplesMessage.classList.add('hidden');
         generateAndDisplayExampleAnswers();
         enableAdminDecisionButtons();
@@ -250,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startAnswerTimer() {
-        timeLeftForAnswer = adminSetAnswerTimeLimit; // Adminin təyin etdiyi vaxt
+        timeLeftForAnswer = adminSetAnswerTimeLimit;
         timerDisplay.textContent = timeLeftForAnswer;
         answerTimerId = setInterval(() => {
             timeLeftForAnswer--;
@@ -265,12 +303,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleTimeout() {
         showFeedback("Vaxt bitdi! Cavab səhv qəbul edildi.", "incorrect");
         disableAdminDecisionButtons();
-        // Avtomatik səhv cavab və növbəti sual
-        adminGivesFeedback(false, true); // İkinci parametr timeout olduğunu bildirir
+        adminGivesFeedback(false, true);
     }
 
     function generateAndDisplayExampleAnswers() {
-        // ... (əvvəlki generateAndDisplayExampleAnswers funksiyası)
         exampleAnswersList.innerHTML = '';
         const letterSpecificExamples = [];
         const wordsStartingWithLetter = sampleVocabulary[selectedLetter] || [];
@@ -278,18 +314,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (wordsStartingWithLetter.length > 0) {
             const shuffledWords = shuffleArray([...wordsStartingWithLetter]);
             for (let i = 0; i < Math.min(5, shuffledWords.length); i++) {
-                letterSpecificExamples.push(capitalizeFirstLetter(shuffledWords[i]));
+                if (shuffledWords[i] && !shuffledWords[i].toLowerCase().includes("çətin")) {
+                    letterSpecificExamples.push(capitalizeFirstLetter(shuffledWords[i]));
+                }
             }
         }
 
         if (letterSpecificExamples.length > 0) {
+            toggleExamplesBtn.disabled = false;
+            noExamplesMessage.classList.add('hidden');
             letterSpecificExamples.forEach(ex => {
                 const li = document.createElement('li');
                 li.textContent = ex;
                 exampleAnswersList.appendChild(li);
             });
-            toggleExamplesBtn.disabled = false;
-            noExamplesMessage.classList.add('hidden');
         } else {
             noExamplesMessage.classList.remove('hidden');
             toggleExamplesBtn.disabled = true;
@@ -298,13 +336,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function capitalizeFirstLetter(string) {
+        if (!string) return '';
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
     function adminGivesFeedback(isCorrect, fromTimeout = false) {
-        if (!fromTimeout) { // Əgər admin özü basıbsa, taymeri dayandır
+        if (!fromTimeout) {
             clearTimeout(answerTimerId);
         }
+        questionsAskedThisPlayerGame++; // Sual sayını burada artırırıq
 
         if (isCorrect) {
             score++;
@@ -312,17 +352,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!fromTimeout) showFeedback("Əla! Düzgün cavab!", "correct");
         } else {
             if (!fromTimeout) showFeedback("Təəssüf... Bu dəfə alınmadı.", "incorrect");
-            // fromTimeout zamanı mesaj artıq handleTimeout-da verilib
         }
         disableAdminDecisionButtons();
 
         feedbackTimeoutId = setTimeout(() => {
-            if (questionsAskedThisPlayerGame < QUESTIONS_PER_PLAYER && questionsForCurrentPlayer.length > questionsAskedThisPlayerGame) { // Dəqiq yoxlama
+            if (questionsAskedThisPlayerGame < QUESTIONS_PER_PLAYER && questionsAskedThisPlayerGame < questionsForCurrentPlayer.length) {
                 displayNextQuestionForPlayer();
             } else {
                 endPlayerGame();
             }
-        }, fromTimeout ? 500 : FEEDBACK_DISPLAY_TIME); // Taymer bitibsə daha tez keç
+        }, fromTimeout ? 600 : FEEDBACK_DISPLAY_TIME); // Timeout üçün bir az daha sürətli keçid
     }
 
     function endPlayerGame(forceEnd = false) {
@@ -333,17 +372,14 @@ document.addEventListener('DOMContentLoaded', () => {
         playerNameGameOver.textContent = currentPlayerName;
         finalPlayerScoreDisplay.textContent = score;
         showScreen('player-game-over');
-        if (forceEnd) {
-            showFeedback(`${currentPlayerName} üçün oyun admin tərəfindən bitirildi. Yekun xal: ${score}`, "info", true);
+        if (forceEnd && !playerGameOverArea.classList.contains('hidden')) { // Əgər ekran artıq göstərilibsə, mesajı yenilə
+             showFeedback(`${currentPlayerName} üçün oyun admin tərəfindən bitirildi. Yekun xal: ${score}`, "info", true);
         }
     }
 
-    // savePlayerResult, displayLeaderboard, clearLeaderboard, showFeedback,
-    // enableAdminDecisionButtons, disableAdminDecisionButtons, shuffleArray funksiyaları
-    // əvvəlki kimi qalır.
-    function savePlayerResult(name, playerScore) { /* ... əvvəlki kod ... */
+    function savePlayerResult(name, playerScore) {
         let leaderboard = JSON.parse(localStorage.getItem(LEADERBOARD_KEY)) || [];
-        const existingPlayerIndex = leaderboard.findIndex(p => p.name.toLowerCase() === name.toLowerCase());
+        const existingPlayerIndex = leaderboard.findIndex(p => p.name.trim().toLowerCase() === name.trim().toLowerCase());
         if (existingPlayerIndex > -1) {
             if (playerScore > leaderboard[existingPlayerIndex].score) {
                  leaderboard[existingPlayerIndex].score = playerScore;
@@ -355,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem(LEADERBOARD_KEY, JSON.stringify(leaderboard));
     }
 
-    function displayLeaderboard() { /* ... əvvəlki kod ... */
+    function displayLeaderboard() {
         leaderboardTableBody.innerHTML = '';
         let leaderboard = JSON.parse(localStorage.getItem(LEADERBOARD_KEY)) || [];
         if (leaderboard.length === 0) {
@@ -374,61 +410,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    function clearLeaderboard() { /* ... əvvəlki kod ... */
-         if (confirm("Liderlər cədvəlini təmizləməyə əminsinizmi?")) {
+    function clearLeaderboard() {
+         if (confirm("Liderlər cədvəlini təmizləməyə əminsinizmi? Bu əməliyyat geri qaytarıla bilməz.")) {
             localStorage.removeItem(LEADERBOARD_KEY);
             displayLeaderboard();
             showFeedback("Liderlər cədvəli təmizləndi.", "info", true);
         }
     }
 
-    function showFeedback(message, type, persist = false) { /* ... əvvəlki kod ... */
+    function showFeedback(message, type, persist = false) {
         feedbackMessage.textContent = message;
         feedbackMessage.className = `feedback-${type}`;
+        // Persist olmayan mesajların avtomatik silinməsi məntiqini çıxardım,
+        // çünki növbəti sualda onsuz da təmizlənir.
     }
 
-    function enableAdminDecisionButtons() { /* ... əvvəlki kod ... */
+    function enableAdminDecisionButtons() {
         adminCorrectBtn.disabled = false;
         adminIncorrectBtn.disabled = false;
         adminEndPlayerGameBtn.disabled = false;
     }
 
-    function disableAdminDecisionButtons() { /* ... əvvəlki kod ... */
+    function disableAdminDecisionButtons() {
         adminCorrectBtn.disabled = true;
         adminIncorrectBtn.disabled = true;
-        // adminEndPlayerGameBtn-i aktiv saxlayaq ki, admin istənilən vaxt bitirə bilsin
-        // adminEndPlayerGameBtn.disabled = true;
+        // adminEndPlayerGameBtn aktiv qalsın ki, admin istənilən vaxt bitirə bilsin.
     }
 
-    function shuffleArray(array) { /* ... əvvəlki kod ... */
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+    function shuffleArray(array) {
+        let currentIndex = array.length, randomIndex;
+        while (currentIndex !== 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
         }
         return array;
     }
 
-
-    // Event Listeners
     adminCorrectBtn.addEventListener('click', () => adminGivesFeedback(true));
     adminIncorrectBtn.addEventListener('click', () => adminGivesFeedback(false));
     adminEndPlayerGameBtn.addEventListener('click', () => endPlayerGame(true));
-    toggleExamplesBtn.addEventListener('click', () => { /* ... əvvəlki kod ... */
+    toggleExamplesBtn.addEventListener('click', () => {
         exampleAnswersArea.classList.toggle('hidden');
-        if (exampleAnswersArea.classList.contains('hidden')) {
-            toggleExamplesBtn.innerHTML = '<i class="fas fa-lightbulb"></i> Nümunə Cavabları Göstər';
-        } else {
-            toggleExamplesBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Nümunə Cavabları Gizlət';
-        }
+        toggleExamplesBtn.innerHTML = exampleAnswersArea.classList.contains('hidden') ?
+            '<i class="fas fa-lightbulb"></i> Nümunə Cavabları Göstər' :
+            '<i class="fas fa-eye-slash"></i> Nümunə Cavabları Gizlət';
     });
     nextPlayerBtn.addEventListener('click', () => {
-        showScreen('initial-setup'); // Növbəti oyunçu üçün yenidən ad və taymer ayarları
+        // Növbəti oyunçu üçün playerNameInput və timerSettingInput-u sıfırlamayaq,
+        // admin eyni ayarlarla davam etmək istəyə bilər və ya dəyişə bilər.
+        showScreen('initial-setup');
     });
     showLeaderboardBtn.addEventListener('click', () => {
         showScreen('leaderboard');
     });
     backToPlayerNameBtn.addEventListener('click', () => {
-        showScreen('initial-setup'); // Liderlərdən sonra yenidən başlamaq üçün
+        showScreen('initial-setup');
     });
     clearLeaderboardBtn.addEventListener('click', clearLeaderboard);
 
